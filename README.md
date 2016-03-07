@@ -24,6 +24,26 @@ should not occur when our tool is used. To run all the tests do the following:
     cd ~/abs/src/llvm-csan-0.0.1/build
     make check-csan
 
+## Usage
+
+To use the tool, use `clang++` as you normally would except add the flags
+`-fsanitize=const -g`. Note that it is also helpful to disable optimizations
+and include the frame pointer with `-O0 -fno-omit-frame-pointer`. To run the
+example given in Listing 1 of the paper, do the following:
+
+    cd ~/examples
+    clang++ -std=c++11 -fsanitize=const -g listing-1.cpp
+
+Then you can run the resulting executable with `./a.out` and you should see a
+warning. To write to an external log file, use the `log_path` option. For
+example, to log the results to a file called `listing-1.log` do the following:
+
+    CSAN_OPTIONS=log_path=listing-1.log ./a.out
+
+After running the program again, there should be no extra output on `stderr`
+and there should be a `listing-1.log.XXXXX` file in the current directory where
+`XXXXX` are random numbers.
+
 ## Experiments
 
 All experiments are located in the `experiments` directory. To instrument a
