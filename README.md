@@ -1,5 +1,14 @@
 # ECOOP 2016 Artifact
 
+There is an example virtual machine located at
+`http://laforge.cs.uwaterloo.ca/ecoop-2016.qcow2` already setup. The username
+and password to this VM are both `ecoop-2016`. To run the VM, for example with
+QEMU, do the following:
+
+    qemu-system-x86_64 -m 2048 -drive file=ecoop-2016.qcow2,format=qcow2
+
+This VM should have all the requirements needed to run all of the experiments.
+
 ## Building
 
 Ensure you have the `base-devel` group installed and the `multilib` repository
@@ -42,7 +51,7 @@ example, to log the results to a file called `listing-1.log` do the following:
 
 After running the program again, there should be no extra output on `stderr`
 and there should be a `listing-1.log.XXXXX` file in the current directory where
-`XXXXX` are random numbers.
+`XXXXX` are random numbers. Feel free to try it out!
 
 ## Experiments
 
