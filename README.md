@@ -49,13 +49,36 @@ and there should be a `listing-1.log.XXXXX` file in the current directory where
 All experiments are located in the `experiments` directory. To instrument a
 package, for example `ninja`, do the following:
 
-    cd ~/experiements
+    cd ~/experiments
     python build.py ninja
 
 Any violations that occur during build time are located in the `experiments`
 directory in a file named `PACKAGE-build.log`. To create the groupings for
 manually inspection run `python group.py ninja`. The `group.py` script collects
 all results from log files with the specified project name.
+
+## Timing
+
+To collect the timing results, for example for Protobuf, do the following:
+
+    cd ~/experiments
+    python time.py protobuf
+
+Note that you'll have to clear all the build files between each run. Do that
+with the following command (you need to `cd` into the project directory first).
+
+    cd ~/experiments/protobuf
+    rm -rf src pkg *.pkg.tar.xz
+
+The resulting files will be in `/tmp/time-protobuf-build` and
+`/tmp/time-protobuf-check`. The last 3 lines of the first file indicate how
+long it took to build with the tool enabled. The last 3 lines of the second
+file indicate how long it took to run the tests with the tool enabled. After
+recording these numbers you can do the same procedure with the tool disabled.
+To collect the timing (after cleaning) results do:
+
+    cd ~/experiments
+    python time-disable-csan.py protobuf
 
 ## Results
 

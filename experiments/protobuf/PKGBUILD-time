@@ -20,11 +20,11 @@ md5sums=('11aaac2d704eef8efd1867a807865d85')
 build() {
   cd $pkgbase-$pkgver
   ./configure --prefix=/usr
-  make
+  /usr/bin/time -p make &> /tmp/time-protobuf-build.log
 }
 
 check() {
-  make -C $pkgbase-$pkgver check
+  /usr/bin/time -p make -C $pkgbase-$pkgver check &> /tmp/time-protobuf-check.log
 }
 
 package_protobuf() {

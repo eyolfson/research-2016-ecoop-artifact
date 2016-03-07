@@ -22,11 +22,11 @@ prepare() {
 }
 
 build() {
-  make -C "$pkgname-$pkgver"
+  /usr/bin/time -p make -C "$pkgname-$pkgver" &> /tmp/time-leveldb-build
 }
 
 check() {
-  make -C "$pkgname-$pkgver" check
+  /usr/bin/time -p make -C "$pkgname-$pkgver" check &> /tmp/time-leveldb-check
 }
 
 package() {
