@@ -1,0 +1,56 @@
+Unique Warnings: 8
+Warnings: 432
+
+ 290 src/terminal/terminal.cc:112:18
+
+void Emulator::print( const Parser::Print *act )
+{
+  ...
+    act->handled = true;  // terminal.cc:112
+  ...
+}
+
+Root cause: pub
+  class Action
+  {
+  ...
+  public:
+    ...
+    mutable bool handled;  // src/terminal/parseraction.h:48
+    ...
+  };
+
+  41 src/terminal/terminaldispatcher.cc:77:16
+
+void Dispatcher::clear( const Parser::Clear *act )
+  act->handled = true;
+
+  34 src/terminal/terminaldispatcher.cc:57:18
+
+void Dispatcher::newparamchar( const Parser::Param *act )
+    act->handled = true;
+
+  22 src/terminal/terminaldispatcher.cc:68:18
+
+void Dispatcher::collect( const Parser::Collect *act )
+    act->handled = true;
+
+  22 src/terminal/terminaldispatcher.cc:231:18
+
+void Dispatcher::dispatch( Function_Type type, const Parser::Action *act, Framebuffer *fb )
+    act->handled = true;
+
+  19 src/terminal/terminaldispatcher.cc:244:18
+  
+void Dispatcher::OSC_put( const Parser::OSC_Put *act )
+    act->handled = true;
+
+   2 src/terminal/terminalfunctions.cc:570:20
+
+void Dispatcher::OSC_dispatch( const Parser::OSC_End *act, Framebuffer *fb )
+      act->handled = true;
+
+   2 src/terminal/terminaldispatcher.cc:251:16
+
+void Dispatcher::OSC_start( const Parser::OSC_Start *act )
+  act->handled = true;

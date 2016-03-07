@@ -23,3 +23,11 @@ should not occur when our tool is used. To run all the tests do the following:
 
     cd ~/abs/src/llvm-csan-0.0.1/build
     make check-csan
+
+## Results
+
+Our results are in the `results` directory, organized by project name. These
+files represent our findings organized by manually categorizing the violations
+and putting them all under the same heading. The remaining results show the
+number of violations at each source location. These violations are annotated
+with source locations.

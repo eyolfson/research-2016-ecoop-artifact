@@ -1,0 +1,125 @@
+Unique Warnings: 6
+Warnings: 13792
+
+10311 db/db_test.cc:40:12
+
+class AtomicCounter {
+  void IncrementBy(int count) {
+    MutexLock l(&mu_);
+    // db/db_test.cc:40
+    count_ += count;
+  }
+};
+
+  void Increment() {
+    // db/db_test.cc:36
+    IncrementBy(1);
+  }
+
+    class CountingFile : public RandomAccessFile {
+      ...
+      virtual Status Read(uint64_t offset, size_t n, Slice* result,
+                          char* scratch) const {
+        counter_->Increment();
+        // db/db_test.cc:176
+        ...
+      }
+    };
+
+ 2841 util/cache.cc:315:12
+
+  virtual uint64_t NewId() {
+    MutexLock l(&id_mutex_);
+    // util/cache.cc:315
+    return ++(last_id_);
+  }
+
+Status Table::Open(const Options& options,
+                   RandomAccessFile* file,
+                   uint64_t size,
+                   Table** table) {
+    ...
+    // table/table.cc:79
+    rep->cache_id = (options.block_cache ? options.block_cache->NewId() : 0);
+
+Root cause
+----------
+options type is "const Options&"
+
+block_cache type is "Cache*" (a pointer)
+
+  319 db/snapshot.h:55:21
+  319 db/snapshot.h:54:21
+
+  void Delete(const SnapshotImpl* s) {
+    assert(s->list_ == this);
+    s->prev_->next_ = s->next_;
+    s->next_->prev_ = s->prev_;
+    delete s;
+  }
+    1 /usr/include/c++/5.2.0/bits/stl_tree.h:2078:7
+
+
+  virtual Status NewWritableFile(const std::string& fname,
+                                 WritableFile** result) {
+    ...
+    // helpers/memenv/memenv.cc:274 (first non-STL)
+    file_map_[fname] = file;
+
+Status DB::Open(const Options& options, const std::string& dbname,
+                DB** dbptr) {
+  ...
+    // db/db_impl.cc:1456
+    s = options.env->NewWritableFile(LogFileName(dbname, new_log_number),
+
+Root cause
+----------
+
+class InMemoryEnv : public EnvWrapper {
+  ...
+  port::Mutex mutex_;
+  FileSystem file_map_;  // Protected by mutex_.
+};
+
+but again, because of options
+
+    1 util/testutil.h:42:7
+
+  virtual Status NewWritableFile(const std::string& fname,
+                                 WritableFile** result) {
+    ...
+      // util/testutil.h:42
+      ++num_writable_file_errors_;
+
+SAME AS ABOVE
+
+Status DB::Open(const Options& options, const std::string& dbname,
+                DB** dbptr) {
+  ...
+    // db/db_impl.cc:1456
+    s = options.env->NewWritableFile(LogFileName(dbname, new_log_number),
+
+
+## Run times
+
+### without fsanitize=const
+
+BUILD
+real 292.07
+user 290.71
+sys 1.30
+
+CHECK
+real 218.32
+user 238.95
+sys 15.31
+
+BUILD
+real 307.75
+user 306.33
+sys 1.36
+
+CHECK
+real 291.21
+user 288.20
+sys 16.22

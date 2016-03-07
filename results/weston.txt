@@ -1,0 +1,53 @@
+Unique Warnings: 4
+Warnings: 115
+
+91 /home/jon/software/dynamic-immutability-check/experiments/weston/src/weston-1.9.0/shared/option-parser.c:49:28
+
+handle_option(const struct weston_option *option, char *value) {
+  ...
+		* (char **) option->data = strdup(value);
+
+14 /home/jon/software/dynamic-immutability-check/experiments/weston/src/weston-1.9.0/shared/option-parser.c:71:35
+
+long_option(const struct weston_option *options, int count, char *arg)
+{
+				* (int32_t *) options[k].data = 1;
+}
+
+8 /home/jon/software/dynamic-immutability-check/experiments/weston/src/weston-1.9.0/shared/config-parser.c:198:9
+
+int
+weston_config_section_get_uint(struct weston_config_section *section,
+			       const char *key,
+			       uint32_t *value, uint32_t default_value)
+{
+  ...
+	*value = strtoul(entry->value, &end, 0);  // config-parser.c:198
+  ...
+}
+
+
+	const struct config_command uint_commands[] = {
+		{ "background-id", &hmi_ctrl->ui_setting.background_id },
+		{ "panel-id", &hmi_ctrl->ui_setting.panel_id },
+		{ "tiling-id", &hmi_ctrl->ui_setting.tiling_id },
+		{ "sidebyside-id", &hmi_ctrl->ui_setting.sidebyside_id },
+		{ "fullscreen-id", &hmi_ctrl->ui_setting.fullscreen_id },
+		{ "random-id", &hmi_ctrl->ui_setting.random_id },
+		{ "home-id", &hmi_ctrl->ui_setting.home_id },
+		{ "workspace-background-id", &hmi_ctrl->ui_setting.workspace_background_id },
+		{ NULL, NULL }
+	};
+        ...
+	for (i = 0; -1 != result; ++i) {
+		const struct config_command *command = &uint_commands[i];
+                ...
+		if (weston_config_section_get_uint(
+					section, command->key, command->dest, 0) != 0)  // hmi-controller.c
+
+2 /home/jon/software/dynamic-immutability-check/experiments/weston/src/weston-1.9.0/shared/option-parser.c:43:30
+
+
+handle_option(const struct weston_option *option, char *value) {
+  ...
+		* (int32_t *) option->data = strtol(value, &p, 0);

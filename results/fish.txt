@@ -1,0 +1,23 @@
+Unique Warnings: 4
+Warnings: 98
+
+26 wgetopt.cpp:296:34
+26 wgetopt.cpp:295:34
+23 wgetopt.cpp:280:51
+23 wgetopt.cpp:279:34
+
+static void
+exchange(wchar_t **argv)
+
+                argv[bottom + i] = argv[top - (middle - bottom) + i];  // 279
+                argv[top - (middle - bottom) + i] = tem;               // 280
+
+                argv[bottom + i] = argv[middle + i];                   // 295
+                argv[middle + i] = tem;                                // 296
+
+the call
+
+_wgetopt_internal(..., wchar_t *const *argv, ...)
+                exchange((wchar_t **) argv);
+
+root cause: casting

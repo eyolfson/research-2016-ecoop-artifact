@@ -1,0 +1,572 @@
+# Stats
+
+Unique Warnings: 216
+Warnings: 169736
+
+# Patterns
+
+## [0] False positives due to incorrect debugging information
+
+Locations: 7
+Warnings: 27454
+
+### Example
+
+inline std::pair<uint32, bool> CodedInputStream::ReadTagWithCutoff(
+    uint32 cutoff) {
+  ...
+      const uint32 kMax1ByteVarint = 0x7f; // coded_stream.h:899
+  ...
+}
+
+### Instances
+
+25622 src/google/protobuf/io/coded_stream.h:899:20
+ 1278 src/google/protobuf/io/coded_stream.h:910:20
+  196 src/google/protobuf/wire_format_lite_inl.h:285:15
+  196 src/google/protobuf/wire_format_lite_inl.h:273:15
+   54 src/google/protobuf/wire_format_lite_inl.h:349:16
+   54 src/google/protobuf/wire_format_lite_inl.h:348:16
+   54 src/google/protobuf/wire_format_lite_inl.h:347:16
+
+## [1] Generate initialization method
+
+Locations: 2
+Warnings: 40
+Root cause: field is declared mutable
+Classification: lazy initialization, not visible, synchronized
+
+### Note
+
+  // Completely serialize all Generate() calls on this instance.  The
+  // thread-safety constraints of the CodeGenerator interface aren't clear so
+  // just be as conservative as possible.  It's easier to relax this later if
+  // we need to, but I doubt it will be an issue.
+
+### Example
+
+bool Generator::Generate(const FileDescriptor* file,
+                         const string& parameter,
+                         GeneratorContext* context,
+                         string* error) const {
+  ...
+  printer_ = &printer;
+  ...
+}
+
+### Instances
+
+   20 src/google/protobuf/compiler/python/python_generator.cc:279:12
+   20 src/google/protobuf/compiler/python/python_generator.cc:265:9 (note: `file_` field instead of `printer_`)
+
+## [2] Generator Printer
+
+Locations: 7
+Warnings: 118464
+Root cause: field is a pointer
+Classification: synchronized, not visible, buffer/cache
+
+### Example Stack Trace
+
+void Printer::WriteRaw(const char* data, int size) {
+  ...
+  buffer_ += size;       // printer.cc:192 violation
+  buffer_size_ -= size;  // printer.cc:193 violation
+}
+
+void Printer::Print(...) {
+  ...
+      WriteRaw(text + pos, i - pos + 1); // printer.cc:67
+  ...
+}
+
+void Printer::Print(...) {
+  ...
+  Print(vars, text); // printer.cc:122
+}
+
+void PrintTopBoilerplate(io::Printer* printer, ...) {
+  printer->Print(  // python_generator.cc:131
+  ...
+}
+
+bool Generator::Generate(...) const {
+  ...
+  // python_generator.cc:281
+  PrintTopBoilerplate(printer_, file_, GeneratingDescriptorProto());
+  ...
+}
+
+### Instances
+
+46994 src/google/protobuf/io/printer.cc:192:11
+46994 src/google/protobuf/io/printer.cc:193:16
+12257 src/google/protobuf/io/printer.cc:72:25
+11541 src/google/protobuf/io/printer.cc:173:23
+  226 src/google/protobuf/io/zero_copy_stream_impl_lite.cc:183:9
+  226 src/google/protobuf/io/printer.cc:187:13
+  226 src/google/protobuf/io/printer.cc:185:13
+
+## [3] Source code locations
+
+Locations: 4
+Warnings: 1898
+Root cause: field is a pointer
+Classification: incorrect
+
+### Example
+
+inline ::std::string* SourceCodeInfo_Location::mutable_leading_comments() {
+  set_has_leading_comments();
+  if (leading_comments_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    leading_comments_ = new ::std::string;  // google/protobuf/descriptor.pb.h:6585
+  }
+  // @@protoc_insertion_point(field_mutable:google.protobuf.SourceCodeInfo.Location.leading_comments)
+  return leading_comments_;
+}
+
+void Parser::LocationRecorder::AttachComments(
+    string* leading, string* trailing) const {
+  GOOGLE_CHECK(!location_->has_leading_comments());
+  GOOGLE_CHECK(!location_->has_trailing_comments());
+
+  if (!leading->empty()) {
+    location_->mutable_leading_comments()->swap(*leading);  // google/protobuf/compiler/parser.cc:372
+  }
+  if (!trailing->empty()) {
+    location_->mutable_trailing_comments()->swap(*trailing);
+  }
+}
+
+### Instances
+
+  841 src/google/protobuf/descriptor.pb.h:6585:23
+  841 src/google/protobuf/descriptor.pb.h:6543:17
+  108 src/google/protobuf/descriptor.pb.h:6661:24
+  108 src/google/protobuf/descriptor.pb.h:6619:17
+
+## [4] Linked list operations
+
+Locations: 2
+Warnings: 84
+Root cause: field is mutable \code{mutable linked_ptr_internal const* next_;}
+Classification: synchronized, incorrect
+
+### Example
+
+  bool depart()
+      GTEST_LOCK_EXCLUDED_(g_linked_ptr_mutex) {
+    MutexLock lock(&g_linked_ptr_mutex);
+
+    if (next_ == this) return true;
+    linked_ptr_internal const* p = next_;
+    while (p->next_ != this) p = p->next_;
+    p->next_ = next_;  // gtest/include/gtest/internal/gtest-linked_ptr.h:127
+    return false;
+  }
+
+  void depart() {
+    if (link_.depart()) delete value_; // gtest/include/gtest/internal/gtest-linked_ptr.h:195
+  }
+
+  ~linked_ptr() { depart(); } // gtest/include/gtest/internal/gtest-linked_ptr.h:143:y
+
+### Instances
+
+   42 gtest/include/gtest/internal/gtest-linked_ptr.h:127:14
+   42 gtest/include/gtest/internal/gtest-linked_ptr.h:114:14 (note: `join` instead of `depart)
+
+## [5] Message cache sizes
+
+Locations: 61
+Warnings: 7158
+Root cause: mutable
+Classification: synchronized, buffer/cache
+
+### Notes
+
+This seems to be visible, for instance there's a method declaration:
+\code{void SetCachedSize(int size) const;}. The specific field here is
+`_cached_size_`.
+
+### Example
+
+int FieldDescriptorProto::ByteSize() const {
+  ...
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = total_size; // descriptor.pb.cc:3109
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+  ...
+}
+
+### Instances
+
+ 1897 src/google/protobuf/descriptor.pb.cc:3109:17
+ 1255 src/google/protobuf/descriptor.pb.cc:7895:17
+ 1179 src/google/protobuf/descriptor.pb.cc:8396:17
+  417 src/google/protobuf/descriptor.pb.cc:2406:17
+  344 src/google/protobuf/descriptor.pb.cc:4041:17
+  289 src/google/protobuf/unittest.pb.cc:3228:17
+  256 src/google/protobuf/descriptor.pb.cc:6425:17
+  144 src/google/protobuf/unittest.pb.cc:7902:17
+  141 src/google/protobuf/unittest_import.pb.cc:279:17
+   94 src/google/protobuf/descriptor.pb.cc:1895:17
+   93 src/google/protobuf/descriptor.pb.cc:3711:17
+   82 src/google/protobuf/unittest.pb.cc:3672:17
+   81 src/google/protobuf/descriptor.pb.cc:8841:17
+   81 src/google/protobuf/descriptor.pb.cc:8830:29 (note: `_span_cached_byte_size` instead of `_cached_size_`)
+   81 src/google/protobuf/descriptor.pb.cc:8813:29 (note: `_path_cached_byte_size` instead of `_cached_size_`)
+   57 src/google/protobuf/unittest_lite.pb.cc:578:17
+   54 src/google/protobuf/unittest_custom_options.pb.cc:5820:17
+   47 src/google/protobuf/unittest_import_public.pb.cc:259:17
+   41 src/google/protobuf/unittest.pb.cc:3450:17
+   38 src/google/protobuf/dynamic_message.cc:504:21
+   34 src/google/protobuf/descriptor.pb.cc:5907:17
+   31 src/google/protobuf/descriptor.pb.cc:5508:17
+   27 src/google/protobuf/unittest_lite.pb.cc:4043:17
+   27 src/google/protobuf/unittest_import_lite.pb.cc:212:17
+   24 src/google/protobuf/unittest_custom_options.pb.cc:4616:17
+   24 src/google/protobuf/unittest_custom_options.pb.cc:3757:17
+   24 src/google/protobuf/descriptor.pb.cc:1590:17
+   21 src/google/protobuf/unittest_lite.pb.cc:3593:17
+   21 src/google/protobuf/unittest.pb.cc:6918:17
+   21 src/google/protobuf/descriptor.pb.cc:9072:17
+   18 src/google/protobuf/unittest_custom_options.pb.cc:3516:17
+   18 src/google/protobuf/descriptor.pb.cc:3389:17
+   17 src/google/protobuf/descriptor.pb.cc:4779:17
+   16 src/google/protobuf/descriptor.pb.cc:4374:17
+   15 src/google/protobuf/compiler/plugin.pb.cc:790:17
+   14 src/google/protobuf/descriptor.pb.cc:6770:17
+   12 src/google/protobuf/unittest_lite.pb.cc:944:17
+   12 src/google/protobuf/unittest.pb.cc:8539:17
+   11 src/google/protobuf/descriptor.pb.cc:7053:17
+    9 src/google/protobuf/unittest_import_public_lite.pb.cc:200:17
+    6 src/google/protobuf/unittest_lite.pb.cc:761:17
+    6 src/google/protobuf/unittest_lite.pb.cc:5394:17
+    6 src/google/protobuf/unittest_custom_options.pb.cc:5169:17
+    6 src/google/protobuf/unittest_custom_options.pb.cc:4842:17
+    6 src/google/protobuf/unittest_custom_options.pb.cc:4352:17
+    6 src/google/protobuf/unittest_custom_options.pb.cc:4114:17
+    6 src/google/protobuf/unittest.pb.cc:8317:17
+    6 src/google/protobuf/unittest.pb.cc:20752:17
+    6 src/google/protobuf/descriptor.pb.cc:7611:17
+    6 src/google/protobuf/descriptor.pb.cc:7332:17
+    4 src/google/protobuf/unittest_lite.pb.cc:5032:17
+    4 src/google/protobuf/unittest.pb.cc:11876:17
+    3 src/google/protobuf/unittest_mset.pb.cc:1300:17
+    3 src/google/protobuf/unittest_lite.pb.cc:6250:17
+    3 src/google/protobuf/unittest_lite.pb.cc:6064:17
+    3 src/google/protobuf/unittest_lite.pb.cc:5211:17
+    3 src/google/protobuf/unittest.pb.cc:26291:17
+    3 src/google/protobuf/unittest.pb.cc:26064:17
+    2 src/google/protobuf/unittest_optimize_for.pb.cc:243:17
+    2 src/google/protobuf/unittest.pb.cc:20483:17
+    1 src/google/protobuf/unittest.pb.cc:24882:17
+
+## [6] Message targets
+
+Locations: 133
+Warnings: 14638
+Root cause: ???
+Classification: ???
+
+### Notes
+
+This might be a false positive? or it may be something very complex. I think it
+might be buried due to inlining.
+
+### Example
+
+::google::protobuf::uint8* FieldDescriptorProto::SerializeWithCachedSizesToArray(
+    ::google::protobuf::uint8* target) const {
+  ...
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(  // descriptor.pb.cc:2961
+        1, this->name(), target);
+  ...
+}
+
+template<typename MessageType_WorkAroundCppLookupDefect>
+inline uint8* WireFormatLite::WriteMessageNoVirtualToArray(
+    int field_number, const MessageType_WorkAroundCppLookupDefect& value,
+    uint8* target) {
+  target = WriteTagToArray(field_number, WIRETYPE_LENGTH_DELIMITED, target);
+  target = io::CodedOutputStream::WriteVarint32ToArray(
+    value.MessageType_WorkAroundCppLookupDefect::GetCachedSize(), target);
+  return value.MessageType_WorkAroundCppLookupDefect  // google/protobuf/wire_format_lite_inl.h:793
+      ::SerializeWithCachedSizesToArray(target);
+}
+
+::google::protobuf::uint8* DescriptorProto::SerializeWithCachedSizesToArray(
+    ::google::protobuf::uint8* target) const {
+  ...
+  for (int i = 0; i < this->field_size(); i++) {
+    target = ::google::protobuf::internal::WireFormatLite::  // google/protobuf/descriptor.pb.cc:2278
+      WriteMessageNoVirtualToArray(
+        2, this->field(i), target);
+  }
+  ...
+}
+
+template<typename MessageType_WorkAroundCppLookupDefect>
+inline uint8* WireFormatLite::WriteMessageNoVirtualToArray(
+    int field_number, const MessageType_WorkAroundCppLookupDefect& value,
+    uint8* target) {
+  target = WriteTagToArray(field_number, WIRETYPE_LENGTH_DELIMITED, target);
+  target = io::CodedOutputStream::WriteVarint32ToArray(
+    value.MessageType_WorkAroundCppLookupDefect::GetCachedSize(), target);
+  return value.MessageType_WorkAroundCppLookupDefect  // google/protobuf/wire_format_lite_inl.h:793
+      ::SerializeWithCachedSizesToArray(target);
+}
+
+
+::google::protobuf::uint8* FileDescriptorProto::SerializeWithCachedSizesToArray(
+    ::google::protobuf::uint8* target) const {
+  ...
+  // repeated .google.protobuf.DescriptorProto message_type = 4;
+  for (int i = 0; i < this->message_type_size(); i++) {
+    target = ::google::protobuf::internal::WireFormatLite::  // google/protobuf/descriptor.pb.cc:1430
+      WriteMessageNoVirtualToArray(
+        4, this->message_type(i), target);
+  }
+  ...
+}
+
+bool MessageLite::AppendPartialToString(string* output) const {
+  int old_size = output->size();
+  int byte_size = ByteSize();
+  STLStringResizeUninitialized(output, old_size + byte_size);
+  uint8* start =
+      reinterpret_cast<uint8*>(io::mutable_string_data(output) + old_size);
+  uint8* end = SerializeWithCachedSizesToArray(start);  //  google/protobuf/message_lite.cc:283
+  if (end - start != byte_size) {
+    ByteSizeConsistencyError(byte_size, ByteSize(), end - start);
+  }
+  return true;
+}
+
+bool MessageLite::AppendToString(string* output) const {
+  GOOGLE_DCHECK(IsInitialized()) << InitializationErrorMessage("serialize", *this);
+  return AppendPartialToString(output);  // google/protobuf/message_lite.cc:274
+}
+
+bool MessageLite::SerializeToString(string* output) const {
+  output->clear();
+  return AppendToString(output);  // google/protobuf/message_lite.cc:292
+}
+
+void FileGenerator::GenerateBuildDescriptors(io::Printer* printer) {
+  ...
+    FileDescriptorProto file_proto;
+    file_->CopyTo(&file_proto);
+    string file_data;
+    file_proto.SerializeToString(&file_data);  // src/google/protobuf/compiler/cpp/cpp_file.cc:578
+  ...
+}
+
+inline char* mutable_string_data(string* s) {
+#ifdef LANG_CXX11
+  // This should be simpler & faster than string_as_array() because the latter
+  // is guaranteed to return NULL when *s is empty, so it has to check for that.
+  return &(*s)[0];
+#else
+  return string_as_array(s);
+#endif
+}
+
+class LIBPROTOBUF_EXPORT FileDescriptorProto : public ::google::protobuf::Message {
+  ...
+  inline const ::std::string& name() const;
+  ...
+  ::google::protobuf::UnknownFieldSet _unknown_fields_;
+
+  ::google::protobuf::uint32 _has_bits_[1];
+  mutable int _cached_size_;
+  ::std::string* name_;
+  ::std::string* package_;
+  ::google::protobuf::RepeatedPtrField< ::std::string> dependency_;
+  ::google::protobuf::RepeatedField< ::google::protobuf::int32 > public_dependency_;
+  ::google::protobuf::RepeatedField< ::google::protobuf::int32 > weak_dependency_;
+  ::google::protobuf::RepeatedPtrField< ::google::protobuf::DescriptorProto > message_type_;
+  ::google::protobuf::RepeatedPtrField< ::google::protobuf::EnumDescriptorProto > enum_type_;
+  ::google::protobuf::RepeatedPtrField< ::google::protobuf::ServiceDescriptorProto > service_;
+  ::google::protobuf::RepeatedPtrField< ::google::protobuf::FieldDescriptorProto > extension_;
+  ::google::protobuf::FileOptions* options_;
+  ::google::protobuf::SourceCodeInfo* source_code_info_;
+  ...
+};
+
+inline uint8* WireFormatLite::WriteStringToArray(int field_number,
+                                                 const string& value,
+                                                 uint8* target) {
+  // String is for UTF-8 text only
+  // WARNING:  In wire_format.cc, both strings and bytes are handled by
+  //   WriteString() to avoid code duplication.  If the implementations become
+  //   different, you will need to update that usage.
+  target = WriteTagToArray(field_number, WIRETYPE_LENGTH_DELIMITED, target);
+  return io::CodedOutputStream::WriteStringWithSizeToArray(value, target);
+}
+
+### Instances
+
+ 1897 src/google/protobuf/descriptor.pb.cc:2961:7
+ 1521 src/google/protobuf/descriptor.pb.cc:2278:14
+ 1255 src/google/protobuf/descriptor.pb.cc:8280:14
+ 1255 src/google/protobuf/descriptor.pb.cc:7855:7
+  869 src/google/protobuf/descriptor.pb.cc:8292:7
+  819 src/google/protobuf/descriptor.pb.cc:6354:14
+  584 src/google/protobuf/descriptor.pb.cc:3000:7
+  577 src/google/protobuf/descriptor.pb.cc:2272:7
+  374 src/google/protobuf/descriptor.pb.cc:2972:7
+  344 src/google/protobuf/descriptor.pb.cc:3985:7
+  344 src/google/protobuf/descriptor.pb.cc:3658:14
+  331 src/google/protobuf/descriptor.pb.cc:3011:7
+  329 src/google/protobuf/wire_format.cc:220:18
+  328 src/google/protobuf/descriptor.pb.cc:1451:14
+  299 src/google/protobuf/descriptor.pb.cc:1430:14
+  256 src/google/protobuf/descriptor.pb.cc:3017:14
+  167 src/google/protobuf/descriptor.pb.cc:5854:14
+  155 src/google/protobuf/descriptor.pb.cc:5406:14
+  125 src/google/protobuf/descriptor.pb.cc:3652:7
+  118 src/google/protobuf/descriptor.pb.cc:2285:14
+  110 src/google/protobuf/extension_set_heavy.cc:495:20
+   98 src/google/protobuf/descriptor.pb.cc:1403:7
+   94 src/google/protobuf/descriptor.pb.cc:2299:14
+   84 src/google/protobuf/descriptor.pb.cc:5337:7
+   81 src/google/protobuf/descriptor.pb.cc:9042:14
+   75 src/google/protobuf/unittest.pb.cc:6123:14
+   73 src/google/protobuf/unittest.pb.cc:6142:14
+   72 src/google/protobuf/unittest.pb.cc:6201:14
+   72 src/google/protobuf/unittest.pb.cc:6156:14
+   72 src/google/protobuf/unittest.pb.cc:6149:14
+   72 src/google/protobuf/unittest.pb.cc:6135:14
+   72 src/google/protobuf/unittest.pb.cc:6129:14
+   70 src/google/protobuf/unittest.pb.cc:6195:14
+   70 src/google/protobuf/unittest.pb.cc:6185:14
+   69 src/google/protobuf/descriptor.pb.cc:5348:7
+   68 src/google/protobuf/descriptor.pb.cc:2292:14
+   65 src/google/protobuf/descriptor.pb.cc:8314:7
+   54 src/google/protobuf/unittest_custom_options.pb.cc:5741:7
+   48 src/google/protobuf/descriptor.pb.cc:2306:14
+   45 src/google/protobuf/unittest.pb.cc:5946:7
+   42 src/google/protobuf/descriptor.pb.cc:1414:7
+   36 src/google/protobuf/unittest.pb.cc:6355:7
+   36 src/google/protobuf/unittest.pb.cc:6285:7
+   36 src/google/protobuf/unittest.pb.cc:6278:7
+   36 src/google/protobuf/unittest.pb.cc:6034:14
+   36 src/google/protobuf/unittest.pb.cc:6027:14
+   36 src/google/protobuf/unittest.pb.cc:5980:14
+   36 src/google/protobuf/unittest.pb.cc:5973:14
+   36 src/google/protobuf/unittest.pb.cc:5966:14
+   36 src/google/protobuf/unittest.pb.cc:5959:14
+   36 src/google/protobuf/unittest.pb.cc:5953:7
+   35 src/google/protobuf/unittest.pb.cc:6325:7
+   35 src/google/protobuf/unittest.pb.cc:6314:7
+   35 src/google/protobuf/unittest.pb.cc:6021:7
+   35 src/google/protobuf/unittest.pb.cc:6010:7
+   35 src/google/protobuf/descriptor.pb.cc:8325:7
+   34 src/google/protobuf/descriptor.pb.cc:2313:14
+   25 src/google/protobuf/descriptor.pb.cc:1458:14
+   25 src/google/protobuf/descriptor.pb.cc:1437:14
+   23 src/google/protobuf/extension_set_heavy.cc:486:7 (note: in define macro)
+   22 src/google/protobuf/descriptor.pb.cc:1424:14
+   21 src/google/protobuf/descriptor.pb.cc:1465:14
+   20 src/google/protobuf/descriptor.pb.cc:4315:7
+   18 src/google/protobuf/descriptor.pb.cc:3359:7
+   18 src/google/protobuf/descriptor.pb.cc:2320:14
+   18 src/google/protobuf/compiler/plugin.pb.cc:384:14
+   17 src/google/protobuf/descriptor.pb.cc:6722:14
+   17 src/google/protobuf/descriptor.pb.cc:4699:7
+   17 src/google/protobuf/descriptor.pb.cc:4321:14
+   17 src/google/protobuf/compiler/plugin.pb.cc:367:14
+   16 src/google/protobuf/extension_set_heavy.cc:461:9 (note: define macro)
+   16 src/google/protobuf/descriptor.pb.cc:1444:14
+   15 src/google/protobuf/descriptor.pb.cc:4721:7
+   15 src/google/protobuf/descriptor.pb.cc:4710:7
+   15 src/google/protobuf/compiler/plugin.pb.cc:746:7
+   15 src/google/protobuf/compiler/plugin.pb.cc:724:7
+   15 src/google/protobuf/compiler/plugin.pb.cc:1039:14
+   14 src/google/protobuf/extension_set_heavy.cc:457:9 (note: define macro)
+   14 src/google/protobuf/descriptor.pb.cc:3665:14
+   12 src/google/protobuf/unittest_custom_options.pb.cc:4055:14
+   12 src/google/protobuf/extension_set_heavy.cc:487:7 (note: define macro)
+   11 src/google/protobuf/descriptor.pb.cc:3996:14
+   10 src/google/protobuf/extension_set_heavy.cc:526:14
+    9 src/google/protobuf/descriptor.pb.cc:7010:14
+    8 src/google/protobuf/extension_set_heavy.cc:489:7 (note: define macro)
+    7 src/google/protobuf/compiler/plugin.pb.cc:378:7
+    6 src/google/protobuf/unittest_custom_options.pb.cc:5761:14
+    6 src/google/protobuf/unittest_custom_options.pb.cc:5754:14
+    6 src/google/protobuf/unittest_custom_options.pb.cc:5747:14
+    6 src/google/protobuf/unittest_custom_options.pb.cc:5384:7
+    6 src/google/protobuf/unittest_custom_options.pb.cc:4578:14
+    6 src/google/protobuf/unittest_custom_options.pb.cc:4048:14
+    6 src/google/protobuf/unittest_custom_options.pb.cc:4036:14
+    6 src/google/protobuf/descriptor.pb.cc:897:14
+    6 src/google/protobuf/descriptor.pb.cc:7568:14
+    6 src/google/protobuf/descriptor.pb.cc:7289:14
+    6 src/google/protobuf/descriptor.pb.cc:4727:14
+    6 src/google/protobuf/descriptor.pb.cc:4328:14
+    4 src/google/protobuf/unittest.pb.cc:17031:7
+    4 src/google/protobuf/unittest.pb.cc:11833:14
+    4 src/google/protobuf/extension_set_heavy.cc:460:9 (note: define macro)
+    4 src/google/protobuf/extension_set_heavy.cc:458:9 (note: define macro)
+    4 src/google/protobuf/compiler/plugin.pb.cc:735:7
+    3 src/google/protobuf/unittest_mset.pb.cc:1498:14
+    3 src/google/protobuf/unittest_mset.pb.cc:1263:7
+    3 src/google/protobuf/unittest_mset.pb.cc:1002:7
+    3 src/google/protobuf/unittest.pb.cc:26658:14
+    3 src/google/protobuf/unittest.pb.cc:26651:14
+    3 src/google/protobuf/unittest.pb.cc:26644:14
+    3 src/google/protobuf/unittest.pb.cc:26637:14
+    3 src/google/protobuf/unittest.pb.cc:26630:14
+    3 src/google/protobuf/unittest.pb.cc:26623:14
+    3 src/google/protobuf/unittest.pb.cc:26616:14
+    3 src/google/protobuf/unittest.pb.cc:26260:14
+    3 src/google/protobuf/unittest.pb.cc:26033:14
+    3 src/google/protobuf/unittest.pb.cc:17717:14
+    3 src/google/protobuf/unittest.pb.cc:17268:14
+    3 src/google/protobuf/unittest.pb.cc:15151:7
+    2 src/google/protobuf/unittest.pb.cc:25284:14
+    2 src/google/protobuf/unittest.pb.cc:17493:7
+    1 src/google/protobuf/unittest_embed_optimize_for.pb.cc:268:14
+    1 src/google/protobuf/unittest_embed_optimize_for.pb.cc:261:14
+    1 src/google/protobuf/unittest.pb.cc:25273:14
+    1 src/google/protobuf/unittest.pb.cc:25266:14
+    1 src/google/protobuf/unittest.pb.cc:21593:7
+    1 src/google/protobuf/unittest.pb.cc:21542:7
+    1 src/google/protobuf/unittest.pb.cc:21525:14
+    1 src/google/protobuf/unittest.pb.cc:21518:14
+    1 src/google/protobuf/unittest.pb.cc:21511:14
+    1 src/google/protobuf/unittest.pb.cc:21499:7
+    1 src/google/protobuf/unittest.pb.cc:21470:7
+    1 src/google/protobuf/unittest.pb.cc:20103:7
+    1 src/google/protobuf/compiler/plugin.pb.cc:1033:7
+
+
+# PROTOBUF no flag
+
+# BUILD
+
+real 781.91
+user 777.44
+sys 3.14
+
+# CHECK
+real 985.35
+user 981.46
+sys 9.45
+
+## flag
+
+# BUILD
+
+real 1095.78
+user 1063.89
+sys 3.98
+
+## CHECK
+
+real 3291.31
+user 3138.03
+sys 13.91

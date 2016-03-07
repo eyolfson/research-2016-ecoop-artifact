@@ -1,0 +1,99 @@
+500 /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/stl_tree.h:2078:7
+
+First line: utils/TableGen/DFAPacketizerEmitter.cpp:166
+Root cause: mutable
+
+void State::addTransition(unsigned InsnClass, const State *To) const {
+  assert(!Transitions.count(InsnClass) &&
+      "Cannot have multiple transitions for the same input");
+  Transitions[InsnClass] = To;
+}
+class State {
+ public:
+  static int currentStateNum;
+  // stateNum is the only member used for equality/ordering, all other members
+  // can be mutated even in const State objects.
+  const int stateNum;
+  mutable bool isInitial;
+  mutable std::set<unsigned> stateInfo;
+  typedef std::map<unsigned, const State *> TransitionMap;
+  mutable TransitionMap Transitions;
+
+  State();
+
+  bool operator<(const State &s) const {
+    return stateNum < s.stateNum;
+  }
+
+  //
+  // canAddInsnClass - Returns true if an instruction of type InsnClass is a
+  // valid transition from this state, i.e., can an instruction of type InsnClass
+  // be added to the packet represented by this state.
+  //
+  // PossibleStates is the set of valid resource states that ensue from valid
+  // transitions.
+  //
+  bool canAddInsnClass(unsigned InsnClass) const;
+  //
+  // AddInsnClass - Return all combinations of resource reservation
+  // which are possible from this state (PossibleStates).
+  //
+  void AddInsnClass(unsigned InsnClass, std::set<unsigned> &PossibleStates) const;
+  // 
+  // addTransition - Add a transition from this state given the input InsnClass
+  //
+  void addTransition(unsigned InsnClass, const State *To) const;
+  //
+  // hasTransition - Returns true if there is a transition from this state
+  // given the input InsnClass
+  //
+  bool hasTransition(unsigned InsnClass) const;
+};
+
+110 /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/stl_tree.h:609:26
+
+also from DFAPacketizerEmitter
+specifically DFAPacketizerEmitter.cpp:486
+
+void DFAPacketizerEmitter::run(raw_ostream &OS) {
+  ...
+        const State *NewState;
+        ...
+          NewState->stateInfo = NewStateResources;
+
+110 /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/stl_tree.h:608:31
+110 /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/stl_tree.h:607:30
+110 /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/stl_tree.h:606:32
+110 /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/stl_tree.h:1481:30
+
+
+85 /home/jon/software/dynamic-immutability-check/experiments/llvm/src/llvm-3.7.0.src/utils/TableGen/CodeGenRegisters.cpp:98:12
+
+definitely mutable
+cached
+
+unsigned CodeGenSubRegIndex::computeLaneMask() const {
+  // Already computed?
+  if (LaneMask)
+    return LaneMask;
+
+  // Recursion guard, shouldn't be required.
+  LaneMask = ~0u;
+
+  // The lane mask is simply the union of all sub-indices.
+  unsigned M = 0;
+  for (const auto &C : Composed)
+    M |= C.second->computeLaneMask();
+  assert(M && "Missing lane mask, sub-register cycle?");
+  LaneMask = M;
+  return LaneMask;
+}
+
+85 /home/jon/software/dynamic-immutability-check/experiments/llvm/src/llvm-3.7.0.src/utils/TableGen/CodeGenRegisters.cpp:91:12
+
+2 /home/jon/software/dynamic-immutability-check/experiments/llvm/src/llvm-3.7.0.src/utils/TableGen/DFAPacketizerEmitter.cpp:436:22
+  const State *Initial = &D.newState();
+ Initial->isInitial = true;
+
+Unique Warnings: 9
+Warnings: 1222 (282 if we combine all the std library violations from the same location)
