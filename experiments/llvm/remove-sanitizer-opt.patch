@@ -1,0 +1,27 @@
+From d1dd9392a57db6b97b19a481bad190e24e4cb37f Mon Sep 17 00:00:00 2001
+From: Jon Eyolfson <jon@eyl.io>
+Date: Mon, 7 Dec 2015 20:50:11 -0500
+Subject: [PATCH] Remove sanitizer optimization flag
+
+---
+ cmake/modules/HandleLLVMOptions.cmake | 4 ----
+ 1 file changed, 4 deletions(-)
+
+diff --git a/cmake/modules/HandleLLVMOptions.cmake b/cmake/modules/HandleLLVMOptions.cmake
+index 5b0d997..c4361d0 100644
+--- a/cmake/modules/HandleLLVMOptions.cmake
++++ b/cmake/modules/HandleLLVMOptions.cmake
+@@ -447,10 +447,6 @@ macro(append_common_sanitizer_flags)
+       NOT uppercase_CMAKE_BUILD_TYPE STREQUAL "RELWITHDEBINFO")
+     add_flag_if_supported("-gline-tables-only" GLINE_TABLES_ONLY)
+   endif()
+-  # Use -O1 even in debug mode, otherwise sanitizers slowdown is too large.
+-  if (uppercase_CMAKE_BUILD_TYPE STREQUAL "DEBUG")
+-    add_flag_if_supported("-O1" O1)
+-  endif()
+ endmacro()
+ 
+ # Turn on sanitizers if necessary.
+-- 
+2.6.2
+

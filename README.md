@@ -24,6 +24,19 @@ should not occur when our tool is used. To run all the tests do the following:
     cd ~/abs/src/llvm-csan-0.0.1/build
     make check-csan
 
+## Experiments
+
+All experiments are located in the `experiments` directory. To instrument a
+package, for example `ninja`, do the following:
+
+    cd ~/experiements
+    python build.py ninja
+
+Any violations that occur during build time are located in the `experiments`
+directory in a file named `PACKAGE-build.log`. To create the groupings for
+manually inspection run `python group.py ninja`. The `group.py` script collects
+all results from log files with the specified project name.
+
 ## Results
 
 Our results are in the `results` directory, organized by project name. These

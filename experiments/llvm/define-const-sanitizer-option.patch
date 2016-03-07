@@ -1,0 +1,26 @@
+From 101d1658f96ce8bc131a0480b495f9d9839d2771 Mon Sep 17 00:00:00 2001
+From: Jon Eyolfson <jon@eyl.io>
+Date: Mon, 7 Dec 2015 10:11:33 -0500
+Subject: [PATCH] Define Const sanitizer option
+
+---
+ cmake/modules/HandleLLVMOptions.cmake | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/cmake/modules/HandleLLVMOptions.cmake b/cmake/modules/HandleLLVMOptions.cmake
+index 4db2703..1144f48 100644
+--- a/cmake/modules/HandleLLVMOptions.cmake
++++ b/cmake/modules/HandleLLVMOptions.cmake
+@@ -477,6 +477,9 @@ if(LLVM_USE_SANITIZER)
+       append_common_sanitizer_flags()
+       append("-fsanitize=address,undefined -fno-sanitize=vptr,function -fno-sanitize-recover=all"
+               CMAKE_C_FLAGS CMAKE_CXX_FLAGS)
++    elseif (LLVM_USE_SANITIZER STREQUAL "Const")
++      append_common_sanitizer_flags()
++      append("-fsanitize=const -O0 -g -fno-omit-frame-pointer" CMAKE_C_FLAGS CMAKE_CXX_FLAGS)
+     else()
+       message(WARNING "Unsupported value of LLVM_USE_SANITIZER: ${LLVM_USE_SANITIZER}")
+     endif()
+-- 
+2.6.2
+

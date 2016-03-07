@@ -1,0 +1,25 @@
+From 6201240c1d1626245f4608b37ff18522ca1a994e Mon Sep 17 00:00:00 2001
+From: Jon Eyolfson <jon@eyl.io>
+Date: Fri, 27 Nov 2015 14:06:39 -0500
+Subject: [PATCH] 2
+
+---
+ Makefile | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Makefile b/Makefile
+index 2bd2cad..981717b 100644
+--- a/Makefile
++++ b/Makefile
+@@ -7,7 +7,7 @@
+ # to switch between compilation modes.
+ 
+ # (A) Production use (optimized mode)
+-OPT ?= -O2 -DNDEBUG
++# OPT ?= -O2 -DNDEBUG
+ # (B) Debug mode, w/ full line-level debugging symbols
+ # OPT ?= -g2
+ # (C) Profiling mode: opt, but w/debugging symbols
+-- 
+2.6.2
+
