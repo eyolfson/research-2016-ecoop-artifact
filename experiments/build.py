@@ -5,7 +5,7 @@ import os
 EXPERIMENTS_DIR = os.path.dirname(os.path.abspath(__file__))
 BASE_DIR = os.path.dirname(EXPERIMENTS_DIR)
 BIN_DIR = os.path.join(BASE_DIR, 'build', 'bin')
-COMMAND = 'CC={} CXX={} makepkg -d -s --config {} --nosign --skippgpcheck'.format(
+COMMAND = 'CC={} CXX={} makepkg -s --config {} --nosign --skippgpcheck'.format(
     'clang',
     'clang++',
     os.path.join(EXPERIMENTS_DIR, 'makepkg.conf')
