@@ -18,5 +18,9 @@ if __name__ == '__main__':
         log_path = os.path.join(EXPERIMENTS_DIR, "{}-build.log".format(arg))
         print(log_path)
         directory = os.path.join(EXPERIMENTS_DIR, arg)
-        subprocess.run("CSAN_OPTIONS=log_path={} ".format(log_path) + COMMAND,
-                       shell=True, check=True, cwd=directory)
+        try:
+            subprocess.run("CSAN_OPTIONS=log_path={} ".format(log_path) + COMMAND,
+                           shell=True, check=True, cwd=directory)
+        except Exception as e:
+            subprocess.run("rm -rf src pkg *.pkg.tar.xz",
+                           shell=True, check=True, cwd=directory)
