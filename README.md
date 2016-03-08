@@ -5,7 +5,7 @@ There is an example virtual machine located at
 and password to this VM are both `ecoop-2016`. To run the VM, for example with
 QEMU, do the following:
 
-    qemu-system-x86_64 -m 2048 -drive file=ecoop-2016.qcow2,format=qcow2
+    qemu-system-x86_64 -enable-kvm -m 2048 -drive file=ecoop-2016.qcow2,format=qcow2
 
 This VM should have all the requirements needed to run all of the experiments.
 
