@@ -92,6 +92,36 @@ all results from log files with the specified project name. Some projects run
 tests as part of their build process (like Ninja) and the results are already
 available to go over.
 
+The next subsections give examples of how we obtained our results in the paper.
+
+### Ninja
+
+In this case, as part of the build process, the tests are run. Therefore the
+`ninja-build.log.XXXXX` show what violations occur as part of the test suite.
+If you open this file and observe it, the first non-standard library portion of
+the stack trace should be in `src/disk_interface_test.cc:226:3` matching the
+results of the paper. There should be 4 unique source locations, starting in
+the standard libary, for all violations. To determine them, which is done for
+all other experiements, do the following:
+
+    cd ~/experiments
+    python group.py ninja-build
+
+This should group the raw results into unique locations and also give the
+dynamic violation count.
+
+### Fish
+
+    cd ~/experiments
+    python build.py fish
+    CSAN_OPTIONS=log_path=fish.log fish/pkg/fish/usr/bin/fish
+
+Then press control-D to exit. Afterwards you can do the same as with Ninja:
+
+    python group.py fish
+
+These results should correspond to the paper.
+
 ## Timing
 
 To collect the timing results, for example for Protobuf, do the following:
