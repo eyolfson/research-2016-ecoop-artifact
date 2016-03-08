@@ -7,6 +7,11 @@ QEMU, do the following:
 
     qemu-system-x86_64 -enable-kvm -m 2048 -drive file=ecoop-2016.qcow2,format=qcow2
 
+The login information you'll always want to use is:
+
+    Username: ecoop-2016
+    Password: ecoop-2016
+
 This VM should have all the requirements needed to run all of the experiments.
 If you want to SSH into the VM from your host, use the following:
 
