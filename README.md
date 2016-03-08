@@ -43,6 +43,19 @@ should not occur when our tool is used. To run all the tests do the following:
     cd ~/abs/src/llvm-csan-0.0.1/build
     make check-csan
 
+### Manually Running Tests
+
+The LLVM testing framework does not give much feedback if the tests are
+successful. To manually run them yourself do the following:
+
+    cd ~
+    clang -fsanitize=const -g ~/abs/src/llvm-csan-0.0.1/projects/compiler-rt/test/csan/const-object.cc -o const-object
+    ./const-object
+
+You may explore all the other tests by exploring
+`~/abs/src/llvm-csan-0.0.1/projects/compiler-rt/test/csan` and running them in
+a similar manner.
+
 ## Usage
 
 To use the tool, use `clang++` as you normally would, but add the
