@@ -8,8 +8,15 @@ QEMU, do the following:
     qemu-system-x86_64 -enable-kvm -m 2048 -drive file=ecoop-2016.qcow2,format=qcow2
 
 This VM should have all the requirements needed to run all of the experiments.
+If you want to SSH into the VM from your host, use the following:
 
-## Building
+    qemu-system-x86_64 -enable-kvm -m 2048 -drive file=ecoop-2016.qcow2,format=qcow2 -net user,hostfwd=tcp::10022-:22 -net nic
+
+Then from your host machine do:
+
+    ssh ecoop-2016@localhost -p10022
+
+## Building (Optional)
 
 Ensure you have the `base-devel` group installed and the `multilib` repository
 enabled. Afterwards you can build the package in the standard Arch Linux
@@ -17,6 +24,9 @@ fashion:
 
     cd ~/abs
     makepkg -s
+
+Note, if you are using the VM the `clang` executable on the machine is a
+prebuilt version of our tool.
 
 ## Testing
 
