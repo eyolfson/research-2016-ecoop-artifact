@@ -64,7 +64,7 @@ package, for example Ninja, do the following:
 
 Any violations that occur during build time are located in the `experiments`
 directory in a file named `PACKAGE-build.log`. To create the groupings for
-manually inspection run `python group.py ninja`. The `group.py` script collects
+manual inspection run `python group.py ninja`. The `group.py` script collects
 all results from log files with the specified project name. Some projects run
 tests as part of their build process (like Ninja) and the results are already
 available to go over.
