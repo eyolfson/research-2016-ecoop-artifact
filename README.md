@@ -35,15 +35,16 @@ should not occur when our tool is used. To run all the tests do the following:
 
 ## Usage
 
-To use the tool, use `clang++` as you normally would except add the flags
-`-fsanitize=const -g`. Note that it is also helpful to disable optimizations
-and include the frame pointer with `-O0 -fno-omit-frame-pointer`. To run the
-example given in Listing 1 of the paper, do the following:
+To use the tool, use `clang++` as you normally would, but add the
+flags `-fsanitize=const -g`. You should get more precise results if
+you disable optimizations and include the frame pointer with `-O0
+-fno-omit-frame-pointer`. To run the example given in Listing 1 of the
+paper, do the following:
 
     cd ~/examples
     clang++ -std=c++11 -fsanitize=const -g listing-1.cpp
 
-Then you can run the resulting executable with `./a.out` and you should see a
+You can run the resulting executable as `./a.out` and you should see a
 warning. To write to an external log file, use the `log_path` option. For
 example, to log the results to a file called `listing-1.log` do the following:
 
