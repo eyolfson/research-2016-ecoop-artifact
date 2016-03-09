@@ -96,7 +96,7 @@ build() {
     -DLLVM_BINUTILS_INCDIR=/usr/include \
     ..
 
-  make
+  /usr/bin/time -p make &> /tmp/time-llvm-build.log
   make ocaml_doc
 
   # Disable automatic installation of components that go into subpackages
@@ -107,7 +107,7 @@ build() {
 
 check() {
   cd "$srcdir/llvm-$pkgver.src/build"
-  make check-all
+  /usr/bin/time -p make check-all &> /tmp/time-llvm-check.log
 }
 
 package_llvm() {
