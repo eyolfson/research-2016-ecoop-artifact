@@ -13,10 +13,12 @@ pkgname=('llvm-csan' 'llvm-libs-csan' 'clang-csan')
 pkgver=3.8.0
 _pkgver=0.0.1
 pkgrel=1
+_ocaml_ver=4.02.3
 arch=('i686' 'x86_64')
 url="http://llvm.org/"
 license=('custom:University of Illinois/NCSA Open Source License')
-makedepends=('cmake' 'libffi' 'python2' 'libedit' 'swig')
+makedepends=('cmake' 'libffi' 'python2' "ocaml=$_ocaml_ver" 'python-sphinx'
+             'ocaml-ctypes' 'ocaml-findlib' 'libedit' 'swig')
 # Use gcc-multilib to build 32-bit compiler-rt libraries on x86_64 (FS#41911)
 makedepends_x86_64=('gcc-multilib')
 options=('staticlibs')
