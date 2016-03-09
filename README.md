@@ -40,6 +40,12 @@ Navigate to the test directory if you wish to see these tests:
 
     cd ~/abs/src/llvm-csan-0.0.1/projects/compiler-rt/test/csan
 
+Note: if you haven't built the tool, this directory will not exist, do the
+following first:
+
+    cd ~/abs
+    makepkg -o
+
 The expected test results are embedded within the source files themselves. Any
 lines with `CHECK` are expected to occur on `stderr` when the source file is
 compiled and run with our tool enabled. Any lines beginning with `CHECK-NOT`
