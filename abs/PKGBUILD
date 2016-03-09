@@ -23,10 +23,12 @@ options=('staticlibs')
 source=(http://laforge.cs.uwaterloo.ca/llvm-csan-$_pkgver.tar.gz
         http://laforge.cs.uwaterloo.ca/clang-csan-$_pkgver.tar.gz
         http://laforge.cs.uwaterloo.ca/compiler-rt-csan-$_pkgver.tar.gz
+        clang-3.7.0-add-gcc-abi-tag-support.patch
         llvm-Config-llvm-config.h)
 sha256sums=('4d7ff882bfb67ec1c422016f7990a9677d67265e4a7f13a8dc8974667166bf40'
             '0139bc6517fe6c63a6c116c472216c2946cb90bdf2f7897f1da5bba67129944a'
             '205d151a7b5f27e38fe6224b6e49776f258f143a7c57b82564507b1d9e0af589'
+            '5ed52d54612829402b63bc500bfefae75b3dc444a1524849c26cadf7e0ae4b7d'
             '597dc5968c695bbdbb0eac9e8eb5117fcd2773bc91edf5ec103ecffffab8bc48')
 
 prepare() {
@@ -35,6 +37,10 @@ prepare() {
   mv "$srcdir/clang-csan-$_pkgver" tools/clang
 
   mv "$srcdir/compiler-rt-csan-$_pkgver" projects/compiler-rt
+
+  # https://llvm.org/bugs/show_bug.cgi?id=23529
+  # http://reviews.llvm.org/D12834
+  patch -d tools/clang -Np0 <../clang-3.7.0-add-gcc-abi-tag-support.patch
 
   mkdir build
 }
