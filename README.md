@@ -54,6 +54,8 @@ should not occur when our tool is used. To run all the tests do the following:
     cd ~/abs/src/llvm-csan-0.0.1/build
     make check-csan
 
+Note that you must have built the tool in order to run `make check-csan`!
+
 ### Manually Running Tests
 
 The LLVM testing framework does not give much feedback if the tests are
