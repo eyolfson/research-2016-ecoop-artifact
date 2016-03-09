@@ -23,6 +23,11 @@ Then from your host machine do:
 
 ## Building (Optional)
 
+If you are using the VM image that we've distributed, the `clang`
+executable on that VM points to a prebuilt version of our
+tool. However, we've included the sources and you can build your own
+`clang` from scratch as follows.
+
 Ensure you have the `base-devel` group installed and the `multilib` repository
 enabled. Afterwards you can build the package in the standard Arch Linux
 fashion:
@@ -30,13 +35,9 @@ fashion:
     cd ~/abs
     makepkg -s
 
-Note, if you are using the VM the `clang` executable on the machine is a
-prebuilt version of our tool.
-
-## Testing
-
-There are 16 small test cases you run to ensure the tool works correctly.
-Navigate to the test directory if you wish to see these tests:
+After building the tool, you can use our set of 16 small test cases
+you run to ensure the tool works correctly. Navigate to the test
+directory to see these tests:
 
     cd ~/abs/src/llvm-csan-0.0.1/projects/compiler-rt/test/csan
 
@@ -58,8 +59,11 @@ Note that you must have built the tool in order to run `make check-csan`!
 
 ### Manually Running Tests
 
-The LLVM testing framework does not give much feedback if the tests are
-successful. To manually run them yourself do the following:
+Instead of automatically running the tests with `make check-csan` (and not getting much feedback,
+due to the LLVM testing framework), you can also manually run the tests. You do need to
+`cd ~/abs; makepkg -o` as described above, though.
+
+To manually run them yourself do the following:
 
     cd ~
     clang -fsanitize=const -g ~/abs/src/llvm-csan-0.0.1/projects/compiler-rt/test/csan/const-object.cc -o const-object
