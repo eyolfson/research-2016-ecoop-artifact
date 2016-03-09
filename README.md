@@ -127,6 +127,58 @@ Then press control-D to exit. Afterwards you can do the same as with Ninja:
 
 These results should correspond to the paper.
 
+### Mosh
+
+    cd ~/experiments
+    python build.py mosh
+    CSAN_OPTIONS=log_path=mosh.log mosh/pkg/mosh/usr/bin/mosh-server
+    pkill mosh-server
+
+Again, similar to the last case, use the group script:
+
+    python group.py mosh
+
+These results should correspond to the paper.
+
+### LLVM
+
+Similar to before, LLVM compiles `llvm-tblgen` and executes it as part of its
+build process. Therefore after running the build script the results should be
+accessible with:
+
+    cd ~/experiments
+    python group.py llvm-build
+
+### Wayland / Weston
+
+First build Wayland and install the package:
+
+    cd ~/experiments
+    python build.py wayland
+    sudo pacman -U wayland/wayland-1.9.0-1-x86_64.pkg.tar.xz
+
+Then you can build weston:
+
+    python build.py weston
+
+Again, run the produced executable:
+
+    CSAN_OPTIONS=log_path=weston.log weston/pkg/weston/usr/bin/weston
+
+### Tesseract
+
+Similar to Fish, you may need to also include `LD_LIBRARY_PATH` like so:
+
+    CSAN_OPTIONS=log_path=tesseract.log LD_LIBRARY_PATH=pkg/tesseract/usr/lib pkg/tesseract/usr/bin/tesseract
+
+### LevelDB
+
+Similar to LLVM, tests are run as part of the build process.
+
+### Protobuf
+
+Similar to LLVM, tests are run as part of the build process.
+
 ## Timing
 
 To collect the timing results, for example for Protobuf, do the following:
