@@ -95,7 +95,7 @@ and there should be a `listing-1.log.XXXXX` file in the current directory where
 
 ## Implementation
 
-Note, that to browse the implementation you have to have the sources extracted.
+Note that to browse the implementation you have to have the sources extracted.
 To extract the sources, do the following:
 
     cd ~/abs
