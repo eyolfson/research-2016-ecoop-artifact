@@ -1,0 +1,9 @@
+==24071==WARNING: ConstSanitizer: modification-of-const-value
+    #0 0x7f9e0a41651b in STRING::string() const /home/jon/software/dynamic-immutability-check/experiments/tesseract/src/tesseract-3.04.00/ccutil/strngs.cpp:200:17
+    #1 0x466339 in tesseract::StringParam::string() const /home/jon/software/dynamic-immutability-check/experiments/tesseract/src/tesseract-3.04.00/training/../ccutil/params.h:203:39
+    #2 0x7f9e0a4233bd in tprintf_internal(char const*, ...) /home/jon/software/dynamic-immutability-check/experiments/tesseract/src/tesseract-3.04.00/ccutil/tprintf.cpp:60:33
+    #3 0x431be1 in main /home/jon/software/dynamic-immutability-check/experiments/tesseract/src/tesseract-3.04.00/training/text2image.cpp:427:3
+    #4 0x7f9e06a0360f in __libc_start_main (/usr/lib/libc.so.6+0x2060f)
+    #5 0x4109c8 in _start (/home/jon/software/dynamic-immutability-check/experiments/tesseract/pkg/tesseract/usr/bin/text2image+0x4109c8)
+
+SUMMARY: ConstSanitizer: modification-of-const-value /home/jon/software/dynamic-immutability-check/experiments/tesseract/src/tesseract-3.04.00/ccutil/strngs.cpp:200:17 in STRING::string() const
