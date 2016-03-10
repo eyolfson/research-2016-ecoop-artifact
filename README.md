@@ -23,9 +23,9 @@ Then from your host machine do:
 
 ## Building (Optional)
 
-If you are using the VM image that we've distributed, the `clang` executable on
+If you are using the VM image that we've distributed, the `clang++` executable on
 that VM points to a prebuilt version of our tool. However, we've included the
-sources and you can build your own `clang` from scratch as follows.
+sources and you can build your own `clang++` from scratch as follows.
 
 Ensure you have the `base-devel` group installed and the `multilib` repository
 enabled. Afterwards you can build the package in the standard Arch Linux
