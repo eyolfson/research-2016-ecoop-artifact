@@ -1,0 +1,493 @@
+==27151==WARNING: ConstSanitizer: modification-of-const-value
+    #0 0x479165 in std::vector<std::string, std::allocator<std::string> >::_M_insert_aux(__gnu_cxx::__normal_iterator<std::string*, std::vector<std::string, std::allocator<std::string> > >, std::string const&) /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/vector.tcc:397:27
+    #1 0x462402 in std::vector<std::string, std::allocator<std::string> >::push_back(std::string const&) /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/stl_vector.h:925:4
+    #2 0x4a3dcc in (anonymous namespace)::StatTest::Stat(std::string const&, std::string*) const /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/disk_interface_test.cc:226:3
+    #3 0x52f517 in Node::Stat(DiskInterface*, std::string*) /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/graph.cc:32:20
+    #4 0x4a3769 in (anonymous namespace)::StatTestSimple::Run() /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/disk_interface_test.cc:239:3
+    #5 0x4d1bd9 in main /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/ninja_test.cc:147:5
+    #6 0x7f58b2d3860f in __libc_start_main (/usr/lib/libc.so.6+0x2060f)
+    #7 0x407868 in _start (/home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/ninja_test+0x407868)
+
+SUMMARY: ConstSanitizer: modification-of-const-value /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/vector.tcc:397:27 in std::vector<std::string, std::allocator<std::string> >::_M_insert_aux(__gnu_cxx::__normal_iterator<std::string*, std::vector<std::string, std::allocator<std::string> > >, std::string const&)
+==27151==WARNING: ConstSanitizer: modification-of-const-value
+    #0 0x4791cc in std::vector<std::string, std::allocator<std::string> >::_M_insert_aux(__gnu_cxx::__normal_iterator<std::string*, std::vector<std::string, std::allocator<std::string> > >, std::string const&) /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/vector.tcc:398:28
+    #1 0x462402 in std::vector<std::string, std::allocator<std::string> >::push_back(std::string const&) /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/stl_vector.h:925:4
+    #2 0x4a3dcc in (anonymous namespace)::StatTest::Stat(std::string const&, std::string*) const /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/disk_interface_test.cc:226:3
+    #3 0x52f517 in Node::Stat(DiskInterface*, std::string*) /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/graph.cc:32:20
+    #4 0x4a3769 in (anonymous namespace)::StatTestSimple::Run() /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/disk_interface_test.cc:239:3
+    #5 0x4d1bd9 in main /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/ninja_test.cc:147:5
+    #6 0x7f58b2d3860f in __libc_start_main (/usr/lib/libc.so.6+0x2060f)
+    #7 0x407868 in _start (/home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/ninja_test+0x407868)
+
+SUMMARY: ConstSanitizer: modification-of-const-value /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/vector.tcc:398:28 in std::vector<std::string, std::allocator<std::string> >::_M_insert_aux(__gnu_cxx::__normal_iterator<std::string*, std::vector<std::string, std::allocator<std::string> > >, std::string const&)
+==27151==WARNING: ConstSanitizer: modification-of-const-value
+    #0 0x47923e in std::vector<std::string, std::allocator<std::string> >::_M_insert_aux(__gnu_cxx::__normal_iterator<std::string*, std::vector<std::string, std::allocator<std::string> > >, std::string const&) /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/vector.tcc:399:36
+    #1 0x462402 in std::vector<std::string, std::allocator<std::string> >::push_back(std::string const&) /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/stl_vector.h:925:4
+    #2 0x4a3dcc in (anonymous namespace)::StatTest::Stat(std::string const&, std::string*) const /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/disk_interface_test.cc:226:3
+    #3 0x52f517 in Node::Stat(DiskInterface*, std::string*) /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/graph.cc:32:20
+    #4 0x4a3769 in (anonymous namespace)::StatTestSimple::Run() /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/disk_interface_test.cc:239:3
+    #5 0x4d1bd9 in main /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/ninja_test.cc:147:5
+    #6 0x7f58b2d3860f in __libc_start_main (/usr/lib/libc.so.6+0x2060f)
+    #7 0x407868 in _start (/home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/ninja_test+0x407868)
+
+SUMMARY: ConstSanitizer: modification-of-const-value /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/vector.tcc:399:36 in std::vector<std::string, std::allocator<std::string> >::_M_insert_aux(__gnu_cxx::__normal_iterator<std::string*, std::vector<std::string, std::allocator<std::string> > >, std::string const&)
+==27151==WARNING: ConstSanitizer: modification-of-const-value
+    #0 0x479165 in std::vector<std::string, std::allocator<std::string> >::_M_insert_aux(__gnu_cxx::__normal_iterator<std::string*, std::vector<std::string, std::allocator<std::string> > >, std::string const&) /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/vector.tcc:397:27
+    #1 0x462402 in std::vector<std::string, std::allocator<std::string> >::push_back(std::string const&) /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/stl_vector.h:925:4
+    #2 0x4a3dcc in (anonymous namespace)::StatTest::Stat(std::string const&, std::string*) const /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/disk_interface_test.cc:226:3
+    #3 0x52f517 in Node::Stat(DiskInterface*, std::string*) /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/graph.cc:32:20
+    #4 0x535cb0 in Node::StatIfNecessary(DiskInterface*, std::string*) /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/graph.h:51:12
+    #5 0x52fba6 in DependencyScan::RecomputeDirty(Edge*, std::string*) /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/graph.cc:67:12
+    #6 0x4a39e4 in (anonymous namespace)::StatTestSimple::Run() /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/disk_interface_test.cc:242:3
+    #7 0x4d1bd9 in main /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/ninja_test.cc:147:5
+    #8 0x7f58b2d3860f in __libc_start_main (/usr/lib/libc.so.6+0x2060f)
+    #9 0x407868 in _start (/home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/ninja_test+0x407868)
+
+SUMMARY: ConstSanitizer: modification-of-const-value /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/vector.tcc:397:27 in std::vector<std::string, std::allocator<std::string> >::_M_insert_aux(__gnu_cxx::__normal_iterator<std::string*, std::vector<std::string, std::allocator<std::string> > >, std::string const&)
+==27151==WARNING: ConstSanitizer: modification-of-const-value
+    #0 0x4791cc in std::vector<std::string, std::allocator<std::string> >::_M_insert_aux(__gnu_cxx::__normal_iterator<std::string*, std::vector<std::string, std::allocator<std::string> > >, std::string const&) /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/vector.tcc:398:28
+    #1 0x462402 in std::vector<std::string, std::allocator<std::string> >::push_back(std::string const&) /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/stl_vector.h:925:4
+    #2 0x4a3dcc in (anonymous namespace)::StatTest::Stat(std::string const&, std::string*) const /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/disk_interface_test.cc:226:3
+    #3 0x52f517 in Node::Stat(DiskInterface*, std::string*) /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/graph.cc:32:20
+    #4 0x535cb0 in Node::StatIfNecessary(DiskInterface*, std::string*) /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/graph.h:51:12
+    #5 0x52fba6 in DependencyScan::RecomputeDirty(Edge*, std::string*) /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/graph.cc:67:12
+    #6 0x4a39e4 in (anonymous namespace)::StatTestSimple::Run() /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/disk_interface_test.cc:242:3
+    #7 0x4d1bd9 in main /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/ninja_test.cc:147:5
+    #8 0x7f58b2d3860f in __libc_start_main (/usr/lib/libc.so.6+0x2060f)
+    #9 0x407868 in _start (/home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/ninja_test+0x407868)
+
+SUMMARY: ConstSanitizer: modification-of-const-value /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/vector.tcc:398:28 in std::vector<std::string, std::allocator<std::string> >::_M_insert_aux(__gnu_cxx::__normal_iterator<std::string*, std::vector<std::string, std::allocator<std::string> > >, std::string const&)
+==27151==WARNING: ConstSanitizer: modification-of-const-value
+    #0 0x47923e in std::vector<std::string, std::allocator<std::string> >::_M_insert_aux(__gnu_cxx::__normal_iterator<std::string*, std::vector<std::string, std::allocator<std::string> > >, std::string const&) /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/vector.tcc:399:36
+    #1 0x462402 in std::vector<std::string, std::allocator<std::string> >::push_back(std::string const&) /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/stl_vector.h:925:4
+    #2 0x4a3dcc in (anonymous namespace)::StatTest::Stat(std::string const&, std::string*) const /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/disk_interface_test.cc:226:3
+    #3 0x52f517 in Node::Stat(DiskInterface*, std::string*) /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/graph.cc:32:20
+    #4 0x535cb0 in Node::StatIfNecessary(DiskInterface*, std::string*) /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/graph.h:51:12
+    #5 0x52fba6 in DependencyScan::RecomputeDirty(Edge*, std::string*) /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/graph.cc:67:12
+    #6 0x4a39e4 in (anonymous namespace)::StatTestSimple::Run() /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/disk_interface_test.cc:242:3
+    #7 0x4d1bd9 in main /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/ninja_test.cc:147:5
+    #8 0x7f58b2d3860f in __libc_start_main (/usr/lib/libc.so.6+0x2060f)
+    #9 0x407868 in _start (/home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/ninja_test+0x407868)
+
+SUMMARY: ConstSanitizer: modification-of-const-value /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/vector.tcc:399:36 in std::vector<std::string, std::allocator<std::string> >::_M_insert_aux(__gnu_cxx::__normal_iterator<std::string*, std::vector<std::string, std::allocator<std::string> > >, std::string const&)
+==27151==WARNING: ConstSanitizer: modification-of-const-value
+    #0 0x479165 in std::vector<std::string, std::allocator<std::string> >::_M_insert_aux(__gnu_cxx::__normal_iterator<std::string*, std::vector<std::string, std::allocator<std::string> > >, std::string const&) /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/vector.tcc:397:27
+    #1 0x462402 in std::vector<std::string, std::allocator<std::string> >::push_back(std::string const&) /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/stl_vector.h:925:4
+    #2 0x4a3dcc in (anonymous namespace)::StatTest::Stat(std::string const&, std::string*) const /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/disk_interface_test.cc:226:3
+    #3 0x52f517 in Node::Stat(DiskInterface*, std::string*) /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/graph.cc:32:20
+    #4 0x4a4836 in (anonymous namespace)::StatTestTwoStep::Run() /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/disk_interface_test.cc:255:3
+    #5 0x4d1bd9 in main /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/ninja_test.cc:147:5
+    #6 0x7f58b2d3860f in __libc_start_main (/usr/lib/libc.so.6+0x2060f)
+    #7 0x407868 in _start (/home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/ninja_test+0x407868)
+
+SUMMARY: ConstSanitizer: modification-of-const-value /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/vector.tcc:397:27 in std::vector<std::string, std::allocator<std::string> >::_M_insert_aux(__gnu_cxx::__normal_iterator<std::string*, std::vector<std::string, std::allocator<std::string> > >, std::string const&)
+==27151==WARNING: ConstSanitizer: modification-of-const-value
+    #0 0x4791cc in std::vector<std::string, std::allocator<std::string> >::_M_insert_aux(__gnu_cxx::__normal_iterator<std::string*, std::vector<std::string, std::allocator<std::string> > >, std::string const&) /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/vector.tcc:398:28
+    #1 0x462402 in std::vector<std::string, std::allocator<std::string> >::push_back(std::string const&) /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/stl_vector.h:925:4
+    #2 0x4a3dcc in (anonymous namespace)::StatTest::Stat(std::string const&, std::string*) const /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/disk_interface_test.cc:226:3
+    #3 0x52f517 in Node::Stat(DiskInterface*, std::string*) /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/graph.cc:32:20
+    #4 0x4a4836 in (anonymous namespace)::StatTestTwoStep::Run() /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/disk_interface_test.cc:255:3
+    #5 0x4d1bd9 in main /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/ninja_test.cc:147:5
+    #6 0x7f58b2d3860f in __libc_start_main (/usr/lib/libc.so.6+0x2060f)
+    #7 0x407868 in _start (/home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/ninja_test+0x407868)
+
+SUMMARY: ConstSanitizer: modification-of-const-value /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/vector.tcc:398:28 in std::vector<std::string, std::allocator<std::string> >::_M_insert_aux(__gnu_cxx::__normal_iterator<std::string*, std::vector<std::string, std::allocator<std::string> > >, std::string const&)
+==27151==WARNING: ConstSanitizer: modification-of-const-value
+    #0 0x47923e in std::vector<std::string, std::allocator<std::string> >::_M_insert_aux(__gnu_cxx::__normal_iterator<std::string*, std::vector<std::string, std::allocator<std::string> > >, std::string const&) /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/vector.tcc:399:36
+    #1 0x462402 in std::vector<std::string, std::allocator<std::string> >::push_back(std::string const&) /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/stl_vector.h:925:4
+    #2 0x4a3dcc in (anonymous namespace)::StatTest::Stat(std::string const&, std::string*) const /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/disk_interface_test.cc:226:3
+    #3 0x52f517 in Node::Stat(DiskInterface*, std::string*) /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/graph.cc:32:20
+    #4 0x4a4836 in (anonymous namespace)::StatTestTwoStep::Run() /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/disk_interface_test.cc:255:3
+    #5 0x4d1bd9 in main /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/ninja_test.cc:147:5
+    #6 0x7f58b2d3860f in __libc_start_main (/usr/lib/libc.so.6+0x2060f)
+    #7 0x407868 in _start (/home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/ninja_test+0x407868)
+
+SUMMARY: ConstSanitizer: modification-of-const-value /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/vector.tcc:399:36 in std::vector<std::string, std::allocator<std::string> >::_M_insert_aux(__gnu_cxx::__normal_iterator<std::string*, std::vector<std::string, std::allocator<std::string> > >, std::string const&)
+==27151==WARNING: ConstSanitizer: modification-of-const-value
+    #0 0x479165 in std::vector<std::string, std::allocator<std::string> >::_M_insert_aux(__gnu_cxx::__normal_iterator<std::string*, std::vector<std::string, std::allocator<std::string> > >, std::string const&) /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/vector.tcc:397:27
+    #1 0x462402 in std::vector<std::string, std::allocator<std::string> >::push_back(std::string const&) /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/stl_vector.h:925:4
+    #2 0x4a3dcc in (anonymous namespace)::StatTest::Stat(std::string const&, std::string*) const /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/disk_interface_test.cc:226:3
+    #3 0x52f517 in Node::Stat(DiskInterface*, std::string*) /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/graph.cc:32:20
+    #4 0x535cb0 in Node::StatIfNecessary(DiskInterface*, std::string*) /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/graph.h:51:12
+    #5 0x52fba6 in DependencyScan::RecomputeDirty(Edge*, std::string*) /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/graph.cc:67:12
+    #6 0x4a4ac0 in (anonymous namespace)::StatTestTwoStep::Run() /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/disk_interface_test.cc:258:3
+    #7 0x4d1bd9 in main /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/ninja_test.cc:147:5
+    #8 0x7f58b2d3860f in __libc_start_main (/usr/lib/libc.so.6+0x2060f)
+    #9 0x407868 in _start (/home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/ninja_test+0x407868)
+
+SUMMARY: ConstSanitizer: modification-of-const-value /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/vector.tcc:397:27 in std::vector<std::string, std::allocator<std::string> >::_M_insert_aux(__gnu_cxx::__normal_iterator<std::string*, std::vector<std::string, std::allocator<std::string> > >, std::string const&)
+==27151==WARNING: ConstSanitizer: modification-of-const-value
+    #0 0x4791cc in std::vector<std::string, std::allocator<std::string> >::_M_insert_aux(__gnu_cxx::__normal_iterator<std::string*, std::vector<std::string, std::allocator<std::string> > >, std::string const&) /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/vector.tcc:398:28
+    #1 0x462402 in std::vector<std::string, std::allocator<std::string> >::push_back(std::string const&) /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/stl_vector.h:925:4
+    #2 0x4a3dcc in (anonymous namespace)::StatTest::Stat(std::string const&, std::string*) const /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/disk_interface_test.cc:226:3
+    #3 0x52f517 in Node::Stat(DiskInterface*, std::string*) /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/graph.cc:32:20
+    #4 0x535cb0 in Node::StatIfNecessary(DiskInterface*, std::string*) /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/graph.h:51:12
+    #5 0x52fba6 in DependencyScan::RecomputeDirty(Edge*, std::string*) /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/graph.cc:67:12
+    #6 0x4a4ac0 in (anonymous namespace)::StatTestTwoStep::Run() /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/disk_interface_test.cc:258:3
+    #7 0x4d1bd9 in main /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/ninja_test.cc:147:5
+    #8 0x7f58b2d3860f in __libc_start_main (/usr/lib/libc.so.6+0x2060f)
+    #9 0x407868 in _start (/home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/ninja_test+0x407868)
+
+SUMMARY: ConstSanitizer: modification-of-const-value /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/vector.tcc:398:28 in std::vector<std::string, std::allocator<std::string> >::_M_insert_aux(__gnu_cxx::__normal_iterator<std::string*, std::vector<std::string, std::allocator<std::string> > >, std::string const&)
+==27151==WARNING: ConstSanitizer: modification-of-const-value
+    #0 0x47923e in std::vector<std::string, std::allocator<std::string> >::_M_insert_aux(__gnu_cxx::__normal_iterator<std::string*, std::vector<std::string, std::allocator<std::string> > >, std::string const&) /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/vector.tcc:399:36
+    #1 0x462402 in std::vector<std::string, std::allocator<std::string> >::push_back(std::string const&) /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/stl_vector.h:925:4
+    #2 0x4a3dcc in (anonymous namespace)::StatTest::Stat(std::string const&, std::string*) const /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/disk_interface_test.cc:226:3
+    #3 0x52f517 in Node::Stat(DiskInterface*, std::string*) /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/graph.cc:32:20
+    #4 0x535cb0 in Node::StatIfNecessary(DiskInterface*, std::string*) /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/graph.h:51:12
+    #5 0x52fba6 in DependencyScan::RecomputeDirty(Edge*, std::string*) /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/graph.cc:67:12
+    #6 0x4a4ac0 in (anonymous namespace)::StatTestTwoStep::Run() /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/disk_interface_test.cc:258:3
+    #7 0x4d1bd9 in main /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/ninja_test.cc:147:5
+    #8 0x7f58b2d3860f in __libc_start_main (/usr/lib/libc.so.6+0x2060f)
+    #9 0x407868 in _start (/home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/ninja_test+0x407868)
+
+SUMMARY: ConstSanitizer: modification-of-const-value /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/vector.tcc:399:36 in std::vector<std::string, std::allocator<std::string> >::_M_insert_aux(__gnu_cxx::__normal_iterator<std::string*, std::vector<std::string, std::allocator<std::string> > >, std::string const&)
+==27151==WARNING: ConstSanitizer: modification-of-const-value
+    #0 0x479165 in std::vector<std::string, std::allocator<std::string> >::_M_insert_aux(__gnu_cxx::__normal_iterator<std::string*, std::vector<std::string, std::allocator<std::string> > >, std::string const&) /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/vector.tcc:397:27
+    #1 0x462402 in std::vector<std::string, std::allocator<std::string> >::push_back(std::string const&) /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/stl_vector.h:925:4
+    #2 0x4a3dcc in (anonymous namespace)::StatTest::Stat(std::string const&, std::string*) const /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/disk_interface_test.cc:226:3
+    #3 0x52f517 in Node::Stat(DiskInterface*, std::string*) /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/graph.cc:32:20
+    #4 0x535cb0 in Node::StatIfNecessary(DiskInterface*, std::string*) /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/graph.h:51:12
+    #5 0x52fba6 in DependencyScan::RecomputeDirty(Edge*, std::string*) /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/graph.cc:67:12
+    #6 0x52fc76 in DependencyScan::RecomputeDirty(Edge*, std::string*) /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/graph.cc:70:14
+    #7 0x4a4ac0 in (anonymous namespace)::StatTestTwoStep::Run() /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/disk_interface_test.cc:258:3
+    #8 0x4d1bd9 in main /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/ninja_test.cc:147:5
+    #9 0x7f58b2d3860f in __libc_start_main (/usr/lib/libc.so.6+0x2060f)
+    #10 0x407868 in _start (/home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/ninja_test+0x407868)
+
+SUMMARY: ConstSanitizer: modification-of-const-value /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/vector.tcc:397:27 in std::vector<std::string, std::allocator<std::string> >::_M_insert_aux(__gnu_cxx::__normal_iterator<std::string*, std::vector<std::string, std::allocator<std::string> > >, std::string const&)
+==27151==WARNING: ConstSanitizer: modification-of-const-value
+    #0 0x4791cc in std::vector<std::string, std::allocator<std::string> >::_M_insert_aux(__gnu_cxx::__normal_iterator<std::string*, std::vector<std::string, std::allocator<std::string> > >, std::string const&) /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/vector.tcc:398:28
+    #1 0x462402 in std::vector<std::string, std::allocator<std::string> >::push_back(std::string const&) /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/stl_vector.h:925:4
+    #2 0x4a3dcc in (anonymous namespace)::StatTest::Stat(std::string const&, std::string*) const /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/disk_interface_test.cc:226:3
+    #3 0x52f517 in Node::Stat(DiskInterface*, std::string*) /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/graph.cc:32:20
+    #4 0x535cb0 in Node::StatIfNecessary(DiskInterface*, std::string*) /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/graph.h:51:12
+    #5 0x52fba6 in DependencyScan::RecomputeDirty(Edge*, std::string*) /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/graph.cc:67:12
+    #6 0x52fc76 in DependencyScan::RecomputeDirty(Edge*, std::string*) /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/graph.cc:70:14
+    #7 0x4a4ac0 in (anonymous namespace)::StatTestTwoStep::Run() /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/disk_interface_test.cc:258:3
+    #8 0x4d1bd9 in main /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/ninja_test.cc:147:5
+    #9 0x7f58b2d3860f in __libc_start_main (/usr/lib/libc.so.6+0x2060f)
+    #10 0x407868 in _start (/home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/ninja_test+0x407868)
+
+SUMMARY: ConstSanitizer: modification-of-const-value /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/vector.tcc:398:28 in std::vector<std::string, std::allocator<std::string> >::_M_insert_aux(__gnu_cxx::__normal_iterator<std::string*, std::vector<std::string, std::allocator<std::string> > >, std::string const&)
+==27151==WARNING: ConstSanitizer: modification-of-const-value
+    #0 0x47923e in std::vector<std::string, std::allocator<std::string> >::_M_insert_aux(__gnu_cxx::__normal_iterator<std::string*, std::vector<std::string, std::allocator<std::string> > >, std::string const&) /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/vector.tcc:399:36
+    #1 0x462402 in std::vector<std::string, std::allocator<std::string> >::push_back(std::string const&) /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/stl_vector.h:925:4
+    #2 0x4a3dcc in (anonymous namespace)::StatTest::Stat(std::string const&, std::string*) const /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/disk_interface_test.cc:226:3
+    #3 0x52f517 in Node::Stat(DiskInterface*, std::string*) /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/graph.cc:32:20
+    #4 0x535cb0 in Node::StatIfNecessary(DiskInterface*, std::string*) /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/graph.h:51:12
+    #5 0x52fba6 in DependencyScan::RecomputeDirty(Edge*, std::string*) /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/graph.cc:67:12
+    #6 0x52fc76 in DependencyScan::RecomputeDirty(Edge*, std::string*) /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/graph.cc:70:14
+    #7 0x4a4ac0 in (anonymous namespace)::StatTestTwoStep::Run() /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/disk_interface_test.cc:258:3
+    #8 0x4d1bd9 in main /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/ninja_test.cc:147:5
+    #9 0x7f58b2d3860f in __libc_start_main (/usr/lib/libc.so.6+0x2060f)
+    #10 0x407868 in _start (/home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/ninja_test+0x407868)
+
+SUMMARY: ConstSanitizer: modification-of-const-value /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/vector.tcc:399:36 in std::vector<std::string, std::allocator<std::string> >::_M_insert_aux(__gnu_cxx::__normal_iterator<std::string*, std::vector<std::string, std::allocator<std::string> > >, std::string const&)
+==27151==WARNING: ConstSanitizer: modification-of-const-value
+    #0 0x479165 in std::vector<std::string, std::allocator<std::string> >::_M_insert_aux(__gnu_cxx::__normal_iterator<std::string*, std::vector<std::string, std::allocator<std::string> > >, std::string const&) /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/vector.tcc:397:27
+    #1 0x462402 in std::vector<std::string, std::allocator<std::string> >::push_back(std::string const&) /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/stl_vector.h:925:4
+    #2 0x4a3dcc in (anonymous namespace)::StatTest::Stat(std::string const&, std::string*) const /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/disk_interface_test.cc:226:3
+    #3 0x52f517 in Node::Stat(DiskInterface*, std::string*) /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/graph.cc:32:20
+    #4 0x4a56f8 in (anonymous namespace)::StatTestTree::Run() /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/disk_interface_test.cc:275:3
+    #5 0x4d1bd9 in main /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/ninja_test.cc:147:5
+    #6 0x7f58b2d3860f in __libc_start_main (/usr/lib/libc.so.6+0x2060f)
+    #7 0x407868 in _start (/home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/ninja_test+0x407868)
+
+SUMMARY: ConstSanitizer: modification-of-const-value /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/vector.tcc:397:27 in std::vector<std::string, std::allocator<std::string> >::_M_insert_aux(__gnu_cxx::__normal_iterator<std::string*, std::vector<std::string, std::allocator<std::string> > >, std::string const&)
+==27151==WARNING: ConstSanitizer: modification-of-const-value
+    #0 0x4791cc in std::vector<std::string, std::allocator<std::string> >::_M_insert_aux(__gnu_cxx::__normal_iterator<std::string*, std::vector<std::string, std::allocator<std::string> > >, std::string const&) /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/vector.tcc:398:28
+    #1 0x462402 in std::vector<std::string, std::allocator<std::string> >::push_back(std::string const&) /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/stl_vector.h:925:4
+    #2 0x4a3dcc in (anonymous namespace)::StatTest::Stat(std::string const&, std::string*) const /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/disk_interface_test.cc:226:3
+    #3 0x52f517 in Node::Stat(DiskInterface*, std::string*) /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/graph.cc:32:20
+    #4 0x4a56f8 in (anonymous namespace)::StatTestTree::Run() /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/disk_interface_test.cc:275:3
+    #5 0x4d1bd9 in main /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/ninja_test.cc:147:5
+    #6 0x7f58b2d3860f in __libc_start_main (/usr/lib/libc.so.6+0x2060f)
+    #7 0x407868 in _start (/home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/ninja_test+0x407868)
+
+SUMMARY: ConstSanitizer: modification-of-const-value /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/vector.tcc:398:28 in std::vector<std::string, std::allocator<std::string> >::_M_insert_aux(__gnu_cxx::__normal_iterator<std::string*, std::vector<std::string, std::allocator<std::string> > >, std::string const&)
+==27151==WARNING: ConstSanitizer: modification-of-const-value
+    #0 0x47923e in std::vector<std::string, std::allocator<std::string> >::_M_insert_aux(__gnu_cxx::__normal_iterator<std::string*, std::vector<std::string, std::allocator<std::string> > >, std::string const&) /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/vector.tcc:399:36
+    #1 0x462402 in std::vector<std::string, std::allocator<std::string> >::push_back(std::string const&) /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/stl_vector.h:925:4
+    #2 0x4a3dcc in (anonymous namespace)::StatTest::Stat(std::string const&, std::string*) const /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/disk_interface_test.cc:226:3
+    #3 0x52f517 in Node::Stat(DiskInterface*, std::string*) /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/graph.cc:32:20
+    #4 0x4a56f8 in (anonymous namespace)::StatTestTree::Run() /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/disk_interface_test.cc:275:3
+    #5 0x4d1bd9 in main /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/ninja_test.cc:147:5
+    #6 0x7f58b2d3860f in __libc_start_main (/usr/lib/libc.so.6+0x2060f)
+    #7 0x407868 in _start (/home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/ninja_test+0x407868)
+
+SUMMARY: ConstSanitizer: modification-of-const-value /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/vector.tcc:399:36 in std::vector<std::string, std::allocator<std::string> >::_M_insert_aux(__gnu_cxx::__normal_iterator<std::string*, std::vector<std::string, std::allocator<std::string> > >, std::string const&)
+==27151==WARNING: ConstSanitizer: modification-of-const-value
+    #0 0x479165 in std::vector<std::string, std::allocator<std::string> >::_M_insert_aux(__gnu_cxx::__normal_iterator<std::string*, std::vector<std::string, std::allocator<std::string> > >, std::string const&) /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/vector.tcc:397:27
+    #1 0x462402 in std::vector<std::string, std::allocator<std::string> >::push_back(std::string const&) /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/stl_vector.h:925:4
+    #2 0x4a3dcc in (anonymous namespace)::StatTest::Stat(std::string const&, std::string*) const /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/disk_interface_test.cc:226:3
+    #3 0x52f517 in Node::Stat(DiskInterface*, std::string*) /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/graph.cc:32:20
+    #4 0x535cb0 in Node::StatIfNecessary(DiskInterface*, std::string*) /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/graph.h:51:12
+    #5 0x52fba6 in DependencyScan::RecomputeDirty(Edge*, std::string*) /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/graph.cc:67:12
+    #6 0x4a5973 in (anonymous namespace)::StatTestTree::Run() /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/disk_interface_test.cc:278:3
+    #7 0x4d1bd9 in main /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/ninja_test.cc:147:5
+    #8 0x7f58b2d3860f in __libc_start_main (/usr/lib/libc.so.6+0x2060f)
+    #9 0x407868 in _start (/home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/ninja_test+0x407868)
+
+SUMMARY: ConstSanitizer: modification-of-const-value /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/vector.tcc:397:27 in std::vector<std::string, std::allocator<std::string> >::_M_insert_aux(__gnu_cxx::__normal_iterator<std::string*, std::vector<std::string, std::allocator<std::string> > >, std::string const&)
+==27151==WARNING: ConstSanitizer: modification-of-const-value
+    #0 0x4791cc in std::vector<std::string, std::allocator<std::string> >::_M_insert_aux(__gnu_cxx::__normal_iterator<std::string*, std::vector<std::string, std::allocator<std::string> > >, std::string const&) /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/vector.tcc:398:28
+    #1 0x462402 in std::vector<std::string, std::allocator<std::string> >::push_back(std::string const&) /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/stl_vector.h:925:4
+    #2 0x4a3dcc in (anonymous namespace)::StatTest::Stat(std::string const&, std::string*) const /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/disk_interface_test.cc:226:3
+    #3 0x52f517 in Node::Stat(DiskInterface*, std::string*) /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/graph.cc:32:20
+    #4 0x535cb0 in Node::StatIfNecessary(DiskInterface*, std::string*) /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/graph.h:51:12
+    #5 0x52fba6 in DependencyScan::RecomputeDirty(Edge*, std::string*) /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/graph.cc:67:12
+    #6 0x4a5973 in (anonymous namespace)::StatTestTree::Run() /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/disk_interface_test.cc:278:3
+    #7 0x4d1bd9 in main /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/ninja_test.cc:147:5
+    #8 0x7f58b2d3860f in __libc_start_main (/usr/lib/libc.so.6+0x2060f)
+    #9 0x407868 in _start (/home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/ninja_test+0x407868)
+
+SUMMARY: ConstSanitizer: modification-of-const-value /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/vector.tcc:398:28 in std::vector<std::string, std::allocator<std::string> >::_M_insert_aux(__gnu_cxx::__normal_iterator<std::string*, std::vector<std::string, std::allocator<std::string> > >, std::string const&)
+==27151==WARNING: ConstSanitizer: modification-of-const-value
+    #0 0x47923e in std::vector<std::string, std::allocator<std::string> >::_M_insert_aux(__gnu_cxx::__normal_iterator<std::string*, std::vector<std::string, std::allocator<std::string> > >, std::string const&) /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/vector.tcc:399:36
+    #1 0x462402 in std::vector<std::string, std::allocator<std::string> >::push_back(std::string const&) /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/stl_vector.h:925:4
+    #2 0x4a3dcc in (anonymous namespace)::StatTest::Stat(std::string const&, std::string*) const /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/disk_interface_test.cc:226:3
+    #3 0x52f517 in Node::Stat(DiskInterface*, std::string*) /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/graph.cc:32:20
+    #4 0x535cb0 in Node::StatIfNecessary(DiskInterface*, std::string*) /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/graph.h:51:12
+    #5 0x52fba6 in DependencyScan::RecomputeDirty(Edge*, std::string*) /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/graph.cc:67:12
+    #6 0x4a5973 in (anonymous namespace)::StatTestTree::Run() /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/disk_interface_test.cc:278:3
+    #7 0x4d1bd9 in main /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/ninja_test.cc:147:5
+    #8 0x7f58b2d3860f in __libc_start_main (/usr/lib/libc.so.6+0x2060f)
+    #9 0x407868 in _start (/home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/ninja_test+0x407868)
+
+SUMMARY: ConstSanitizer: modification-of-const-value /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/vector.tcc:399:36 in std::vector<std::string, std::allocator<std::string> >::_M_insert_aux(__gnu_cxx::__normal_iterator<std::string*, std::vector<std::string, std::allocator<std::string> > >, std::string const&)
+==27151==WARNING: ConstSanitizer: modification-of-const-value
+    #0 0x479165 in std::vector<std::string, std::allocator<std::string> >::_M_insert_aux(__gnu_cxx::__normal_iterator<std::string*, std::vector<std::string, std::allocator<std::string> > >, std::string const&) /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/vector.tcc:397:27
+    #1 0x462402 in std::vector<std::string, std::allocator<std::string> >::push_back(std::string const&) /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/stl_vector.h:925:4
+    #2 0x4a3dcc in (anonymous namespace)::StatTest::Stat(std::string const&, std::string*) const /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/disk_interface_test.cc:226:3
+    #3 0x52f517 in Node::Stat(DiskInterface*, std::string*) /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/graph.cc:32:20
+    #4 0x535cb0 in Node::StatIfNecessary(DiskInterface*, std::string*) /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/graph.h:51:12
+    #5 0x52fba6 in DependencyScan::RecomputeDirty(Edge*, std::string*) /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/graph.cc:67:12
+    #6 0x52fc76 in DependencyScan::RecomputeDirty(Edge*, std::string*) /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/graph.cc:70:14
+    #7 0x4a5973 in (anonymous namespace)::StatTestTree::Run() /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/disk_interface_test.cc:278:3
+    #8 0x4d1bd9 in main /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/ninja_test.cc:147:5
+    #9 0x7f58b2d3860f in __libc_start_main (/usr/lib/libc.so.6+0x2060f)
+    #10 0x407868 in _start (/home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/ninja_test+0x407868)
+
+SUMMARY: ConstSanitizer: modification-of-const-value /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/vector.tcc:397:27 in std::vector<std::string, std::allocator<std::string> >::_M_insert_aux(__gnu_cxx::__normal_iterator<std::string*, std::vector<std::string, std::allocator<std::string> > >, std::string const&)
+==27151==WARNING: ConstSanitizer: modification-of-const-value
+    #0 0x4791cc in std::vector<std::string, std::allocator<std::string> >::_M_insert_aux(__gnu_cxx::__normal_iterator<std::string*, std::vector<std::string, std::allocator<std::string> > >, std::string const&) /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/vector.tcc:398:28
+    #1 0x462402 in std::vector<std::string, std::allocator<std::string> >::push_back(std::string const&) /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/stl_vector.h:925:4
+    #2 0x4a3dcc in (anonymous namespace)::StatTest::Stat(std::string const&, std::string*) const /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/disk_interface_test.cc:226:3
+    #3 0x52f517 in Node::Stat(DiskInterface*, std::string*) /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/graph.cc:32:20
+    #4 0x535cb0 in Node::StatIfNecessary(DiskInterface*, std::string*) /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/graph.h:51:12
+    #5 0x52fba6 in DependencyScan::RecomputeDirty(Edge*, std::string*) /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/graph.cc:67:12
+    #6 0x52fc76 in DependencyScan::RecomputeDirty(Edge*, std::string*) /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/graph.cc:70:14
+    #7 0x4a5973 in (anonymous namespace)::StatTestTree::Run() /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/disk_interface_test.cc:278:3
+    #8 0x4d1bd9 in main /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/ninja_test.cc:147:5
+    #9 0x7f58b2d3860f in __libc_start_main (/usr/lib/libc.so.6+0x2060f)
+    #10 0x407868 in _start (/home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/ninja_test+0x407868)
+
+SUMMARY: ConstSanitizer: modification-of-const-value /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/vector.tcc:398:28 in std::vector<std::string, std::allocator<std::string> >::_M_insert_aux(__gnu_cxx::__normal_iterator<std::string*, std::vector<std::string, std::allocator<std::string> > >, std::string const&)
+==27151==WARNING: ConstSanitizer: modification-of-const-value
+    #0 0x47923e in std::vector<std::string, std::allocator<std::string> >::_M_insert_aux(__gnu_cxx::__normal_iterator<std::string*, std::vector<std::string, std::allocator<std::string> > >, std::string const&) /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/vector.tcc:399:36
+    #1 0x462402 in std::vector<std::string, std::allocator<std::string> >::push_back(std::string const&) /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/stl_vector.h:925:4
+    #2 0x4a3dcc in (anonymous namespace)::StatTest::Stat(std::string const&, std::string*) const /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/disk_interface_test.cc:226:3
+    #3 0x52f517 in Node::Stat(DiskInterface*, std::string*) /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/graph.cc:32:20
+    #4 0x535cb0 in Node::StatIfNecessary(DiskInterface*, std::string*) /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/graph.h:51:12
+    #5 0x52fba6 in DependencyScan::RecomputeDirty(Edge*, std::string*) /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/graph.cc:67:12
+    #6 0x52fc76 in DependencyScan::RecomputeDirty(Edge*, std::string*) /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/graph.cc:70:14
+    #7 0x4a5973 in (anonymous namespace)::StatTestTree::Run() /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/disk_interface_test.cc:278:3
+    #8 0x4d1bd9 in main /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/ninja_test.cc:147:5
+    #9 0x7f58b2d3860f in __libc_start_main (/usr/lib/libc.so.6+0x2060f)
+    #10 0x407868 in _start (/home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/ninja_test+0x407868)
+
+SUMMARY: ConstSanitizer: modification-of-const-value /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/vector.tcc:399:36 in std::vector<std::string, std::allocator<std::string> >::_M_insert_aux(__gnu_cxx::__normal_iterator<std::string*, std::vector<std::string, std::allocator<std::string> > >, std::string const&)
+==27151==WARNING: ConstSanitizer: modification-of-const-value
+    #0 0x462350 in std::vector<std::string, std::allocator<std::string> >::push_back(std::string const&) /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/stl_vector.h:919:6
+    #1 0x4a3dcc in (anonymous namespace)::StatTest::Stat(std::string const&, std::string*) const /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/disk_interface_test.cc:226:3
+    #2 0x52f517 in Node::Stat(DiskInterface*, std::string*) /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/graph.cc:32:20
+    #3 0x535cb0 in Node::StatIfNecessary(DiskInterface*, std::string*) /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/graph.h:51:12
+    #4 0x52fba6 in DependencyScan::RecomputeDirty(Edge*, std::string*) /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/graph.cc:67:12
+    #5 0x52fc76 in DependencyScan::RecomputeDirty(Edge*, std::string*) /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/graph.cc:70:14
+    #6 0x4a5973 in (anonymous namespace)::StatTestTree::Run() /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/disk_interface_test.cc:278:3
+    #7 0x4d1bd9 in main /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/ninja_test.cc:147:5
+    #8 0x7f58b2d3860f in __libc_start_main (/usr/lib/libc.so.6+0x2060f)
+    #9 0x407868 in _start (/home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/ninja_test+0x407868)
+
+SUMMARY: ConstSanitizer: modification-of-const-value /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/stl_vector.h:919:6 in std::vector<std::string, std::allocator<std::string> >::push_back(std::string const&)
+==27151==WARNING: ConstSanitizer: modification-of-const-value
+    #0 0x479165 in std::vector<std::string, std::allocator<std::string> >::_M_insert_aux(__gnu_cxx::__normal_iterator<std::string*, std::vector<std::string, std::allocator<std::string> > >, std::string const&) /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/vector.tcc:397:27
+    #1 0x462402 in std::vector<std::string, std::allocator<std::string> >::push_back(std::string const&) /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/stl_vector.h:925:4
+    #2 0x4a3dcc in (anonymous namespace)::StatTest::Stat(std::string const&, std::string*) const /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/disk_interface_test.cc:226:3
+    #3 0x52f517 in Node::Stat(DiskInterface*, std::string*) /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/graph.cc:32:20
+    #4 0x535cb0 in Node::StatIfNecessary(DiskInterface*, std::string*) /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/graph.h:51:12
+    #5 0x52fba6 in DependencyScan::RecomputeDirty(Edge*, std::string*) /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/graph.cc:67:12
+    #6 0x4a5973 in (anonymous namespace)::StatTestTree::Run() /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/disk_interface_test.cc:278:3
+    #7 0x4d1bd9 in main /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/ninja_test.cc:147:5
+    #8 0x7f58b2d3860f in __libc_start_main (/usr/lib/libc.so.6+0x2060f)
+    #9 0x407868 in _start (/home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/ninja_test+0x407868)
+
+SUMMARY: ConstSanitizer: modification-of-const-value /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/vector.tcc:397:27 in std::vector<std::string, std::allocator<std::string> >::_M_insert_aux(__gnu_cxx::__normal_iterator<std::string*, std::vector<std::string, std::allocator<std::string> > >, std::string const&)
+==27151==WARNING: ConstSanitizer: modification-of-const-value
+    #0 0x4791cc in std::vector<std::string, std::allocator<std::string> >::_M_insert_aux(__gnu_cxx::__normal_iterator<std::string*, std::vector<std::string, std::allocator<std::string> > >, std::string const&) /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/vector.tcc:398:28
+    #1 0x462402 in std::vector<std::string, std::allocator<std::string> >::push_back(std::string const&) /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/stl_vector.h:925:4
+    #2 0x4a3dcc in (anonymous namespace)::StatTest::Stat(std::string const&, std::string*) const /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/disk_interface_test.cc:226:3
+    #3 0x52f517 in Node::Stat(DiskInterface*, std::string*) /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/graph.cc:32:20
+    #4 0x535cb0 in Node::StatIfNecessary(DiskInterface*, std::string*) /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/graph.h:51:12
+    #5 0x52fba6 in DependencyScan::RecomputeDirty(Edge*, std::string*) /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/graph.cc:67:12
+    #6 0x4a5973 in (anonymous namespace)::StatTestTree::Run() /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/disk_interface_test.cc:278:3
+    #7 0x4d1bd9 in main /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/ninja_test.cc:147:5
+    #8 0x7f58b2d3860f in __libc_start_main (/usr/lib/libc.so.6+0x2060f)
+    #9 0x407868 in _start (/home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/ninja_test+0x407868)
+
+SUMMARY: ConstSanitizer: modification-of-const-value /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/vector.tcc:398:28 in std::vector<std::string, std::allocator<std::string> >::_M_insert_aux(__gnu_cxx::__normal_iterator<std::string*, std::vector<std::string, std::allocator<std::string> > >, std::string const&)
+==27151==WARNING: ConstSanitizer: modification-of-const-value
+    #0 0x47923e in std::vector<std::string, std::allocator<std::string> >::_M_insert_aux(__gnu_cxx::__normal_iterator<std::string*, std::vector<std::string, std::allocator<std::string> > >, std::string const&) /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/vector.tcc:399:36
+    #1 0x462402 in std::vector<std::string, std::allocator<std::string> >::push_back(std::string const&) /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/stl_vector.h:925:4
+    #2 0x4a3dcc in (anonymous namespace)::StatTest::Stat(std::string const&, std::string*) const /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/disk_interface_test.cc:226:3
+    #3 0x52f517 in Node::Stat(DiskInterface*, std::string*) /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/graph.cc:32:20
+    #4 0x535cb0 in Node::StatIfNecessary(DiskInterface*, std::string*) /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/graph.h:51:12
+    #5 0x52fba6 in DependencyScan::RecomputeDirty(Edge*, std::string*) /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/graph.cc:67:12
+    #6 0x4a5973 in (anonymous namespace)::StatTestTree::Run() /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/disk_interface_test.cc:278:3
+    #7 0x4d1bd9 in main /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/ninja_test.cc:147:5
+    #8 0x7f58b2d3860f in __libc_start_main (/usr/lib/libc.so.6+0x2060f)
+    #9 0x407868 in _start (/home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/ninja_test+0x407868)
+
+SUMMARY: ConstSanitizer: modification-of-const-value /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/vector.tcc:399:36 in std::vector<std::string, std::allocator<std::string> >::_M_insert_aux(__gnu_cxx::__normal_iterator<std::string*, std::vector<std::string, std::allocator<std::string> > >, std::string const&)
+==27151==WARNING: ConstSanitizer: modification-of-const-value
+    #0 0x462350 in std::vector<std::string, std::allocator<std::string> >::push_back(std::string const&) /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/stl_vector.h:919:6
+    #1 0x4a3dcc in (anonymous namespace)::StatTest::Stat(std::string const&, std::string*) const /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/disk_interface_test.cc:226:3
+    #2 0x52f517 in Node::Stat(DiskInterface*, std::string*) /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/graph.cc:32:20
+    #3 0x535cb0 in Node::StatIfNecessary(DiskInterface*, std::string*) /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/graph.h:51:12
+    #4 0x52fba6 in DependencyScan::RecomputeDirty(Edge*, std::string*) /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/graph.cc:67:12
+    #5 0x52fc76 in DependencyScan::RecomputeDirty(Edge*, std::string*) /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/graph.cc:70:14
+    #6 0x4a5973 in (anonymous namespace)::StatTestTree::Run() /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/disk_interface_test.cc:278:3
+    #7 0x4d1bd9 in main /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/ninja_test.cc:147:5
+    #8 0x7f58b2d3860f in __libc_start_main (/usr/lib/libc.so.6+0x2060f)
+    #9 0x407868 in _start (/home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/ninja_test+0x407868)
+
+SUMMARY: ConstSanitizer: modification-of-const-value /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/stl_vector.h:919:6 in std::vector<std::string, std::allocator<std::string> >::push_back(std::string const&)
+==27151==WARNING: ConstSanitizer: modification-of-const-value
+    #0 0x462350 in std::vector<std::string, std::allocator<std::string> >::push_back(std::string const&) /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/stl_vector.h:919:6
+    #1 0x4a3dcc in (anonymous namespace)::StatTest::Stat(std::string const&, std::string*) const /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/disk_interface_test.cc:226:3
+    #2 0x52f517 in Node::Stat(DiskInterface*, std::string*) /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/graph.cc:32:20
+    #3 0x535cb0 in Node::StatIfNecessary(DiskInterface*, std::string*) /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/graph.h:51:12
+    #4 0x52fba6 in DependencyScan::RecomputeDirty(Edge*, std::string*) /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/graph.cc:67:12
+    #5 0x52fc76 in DependencyScan::RecomputeDirty(Edge*, std::string*) /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/graph.cc:70:14
+    #6 0x4a5973 in (anonymous namespace)::StatTestTree::Run() /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/disk_interface_test.cc:278:3
+    #7 0x4d1bd9 in main /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/ninja_test.cc:147:5
+    #8 0x7f58b2d3860f in __libc_start_main (/usr/lib/libc.so.6+0x2060f)
+    #9 0x407868 in _start (/home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/ninja_test+0x407868)
+
+SUMMARY: ConstSanitizer: modification-of-const-value /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/stl_vector.h:919:6 in std::vector<std::string, std::allocator<std::string> >::push_back(std::string const&)
+==27151==WARNING: ConstSanitizer: modification-of-const-value
+    #0 0x479165 in std::vector<std::string, std::allocator<std::string> >::_M_insert_aux(__gnu_cxx::__normal_iterator<std::string*, std::vector<std::string, std::allocator<std::string> > >, std::string const&) /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/vector.tcc:397:27
+    #1 0x462402 in std::vector<std::string, std::allocator<std::string> >::push_back(std::string const&) /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/stl_vector.h:925:4
+    #2 0x4a3dcc in (anonymous namespace)::StatTest::Stat(std::string const&, std::string*) const /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/disk_interface_test.cc:226:3
+    #3 0x52f517 in Node::Stat(DiskInterface*, std::string*) /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/graph.cc:32:20
+    #4 0x4a66e7 in (anonymous namespace)::StatTestMiddle::Run() /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/disk_interface_test.cc:296:3
+    #5 0x4d1bd9 in main /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/ninja_test.cc:147:5
+    #6 0x7f58b2d3860f in __libc_start_main (/usr/lib/libc.so.6+0x2060f)
+    #7 0x407868 in _start (/home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/ninja_test+0x407868)
+
+SUMMARY: ConstSanitizer: modification-of-const-value /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/vector.tcc:397:27 in std::vector<std::string, std::allocator<std::string> >::_M_insert_aux(__gnu_cxx::__normal_iterator<std::string*, std::vector<std::string, std::allocator<std::string> > >, std::string const&)
+==27151==WARNING: ConstSanitizer: modification-of-const-value
+    #0 0x4791cc in std::vector<std::string, std::allocator<std::string> >::_M_insert_aux(__gnu_cxx::__normal_iterator<std::string*, std::vector<std::string, std::allocator<std::string> > >, std::string const&) /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/vector.tcc:398:28
+    #1 0x462402 in std::vector<std::string, std::allocator<std::string> >::push_back(std::string const&) /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/stl_vector.h:925:4
+    #2 0x4a3dcc in (anonymous namespace)::StatTest::Stat(std::string const&, std::string*) const /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/disk_interface_test.cc:226:3
+    #3 0x52f517 in Node::Stat(DiskInterface*, std::string*) /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/graph.cc:32:20
+    #4 0x4a66e7 in (anonymous namespace)::StatTestMiddle::Run() /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/disk_interface_test.cc:296:3
+    #5 0x4d1bd9 in main /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/ninja_test.cc:147:5
+    #6 0x7f58b2d3860f in __libc_start_main (/usr/lib/libc.so.6+0x2060f)
+    #7 0x407868 in _start (/home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/ninja_test+0x407868)
+
+SUMMARY: ConstSanitizer: modification-of-const-value /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/vector.tcc:398:28 in std::vector<std::string, std::allocator<std::string> >::_M_insert_aux(__gnu_cxx::__normal_iterator<std::string*, std::vector<std::string, std::allocator<std::string> > >, std::string const&)
+==27151==WARNING: ConstSanitizer: modification-of-const-value
+    #0 0x47923e in std::vector<std::string, std::allocator<std::string> >::_M_insert_aux(__gnu_cxx::__normal_iterator<std::string*, std::vector<std::string, std::allocator<std::string> > >, std::string const&) /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/vector.tcc:399:36
+    #1 0x462402 in std::vector<std::string, std::allocator<std::string> >::push_back(std::string const&) /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/stl_vector.h:925:4
+    #2 0x4a3dcc in (anonymous namespace)::StatTest::Stat(std::string const&, std::string*) const /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/disk_interface_test.cc:226:3
+    #3 0x52f517 in Node::Stat(DiskInterface*, std::string*) /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/graph.cc:32:20
+    #4 0x4a66e7 in (anonymous namespace)::StatTestMiddle::Run() /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/disk_interface_test.cc:296:3
+    #5 0x4d1bd9 in main /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/ninja_test.cc:147:5
+    #6 0x7f58b2d3860f in __libc_start_main (/usr/lib/libc.so.6+0x2060f)
+    #7 0x407868 in _start (/home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/ninja_test+0x407868)
+
+SUMMARY: ConstSanitizer: modification-of-const-value /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/vector.tcc:399:36 in std::vector<std::string, std::allocator<std::string> >::_M_insert_aux(__gnu_cxx::__normal_iterator<std::string*, std::vector<std::string, std::allocator<std::string> > >, std::string const&)
+==27151==WARNING: ConstSanitizer: modification-of-const-value
+    #0 0x479165 in std::vector<std::string, std::allocator<std::string> >::_M_insert_aux(__gnu_cxx::__normal_iterator<std::string*, std::vector<std::string, std::allocator<std::string> > >, std::string const&) /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/vector.tcc:397:27
+    #1 0x462402 in std::vector<std::string, std::allocator<std::string> >::push_back(std::string const&) /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/stl_vector.h:925:4
+    #2 0x4a3dcc in (anonymous namespace)::StatTest::Stat(std::string const&, std::string*) const /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/disk_interface_test.cc:226:3
+    #3 0x52f517 in Node::Stat(DiskInterface*, std::string*) /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/graph.cc:32:20
+    #4 0x535cb0 in Node::StatIfNecessary(DiskInterface*, std::string*) /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/graph.h:51:12
+    #5 0x52fba6 in DependencyScan::RecomputeDirty(Edge*, std::string*) /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/graph.cc:67:12
+    #6 0x4a6981 in (anonymous namespace)::StatTestMiddle::Run() /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/disk_interface_test.cc:299:3
+    #7 0x4d1bd9 in main /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/ninja_test.cc:147:5
+    #8 0x7f58b2d3860f in __libc_start_main (/usr/lib/libc.so.6+0x2060f)
+    #9 0x407868 in _start (/home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/ninja_test+0x407868)
+
+SUMMARY: ConstSanitizer: modification-of-const-value /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/vector.tcc:397:27 in std::vector<std::string, std::allocator<std::string> >::_M_insert_aux(__gnu_cxx::__normal_iterator<std::string*, std::vector<std::string, std::allocator<std::string> > >, std::string const&)
+==27151==WARNING: ConstSanitizer: modification-of-const-value
+    #0 0x4791cc in std::vector<std::string, std::allocator<std::string> >::_M_insert_aux(__gnu_cxx::__normal_iterator<std::string*, std::vector<std::string, std::allocator<std::string> > >, std::string const&) /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/vector.tcc:398:28
+    #1 0x462402 in std::vector<std::string, std::allocator<std::string> >::push_back(std::string const&) /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/stl_vector.h:925:4
+    #2 0x4a3dcc in (anonymous namespace)::StatTest::Stat(std::string const&, std::string*) const /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/disk_interface_test.cc:226:3
+    #3 0x52f517 in Node::Stat(DiskInterface*, std::string*) /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/graph.cc:32:20
+    #4 0x535cb0 in Node::StatIfNecessary(DiskInterface*, std::string*) /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/graph.h:51:12
+    #5 0x52fba6 in DependencyScan::RecomputeDirty(Edge*, std::string*) /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/graph.cc:67:12
+    #6 0x4a6981 in (anonymous namespace)::StatTestMiddle::Run() /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/disk_interface_test.cc:299:3
+    #7 0x4d1bd9 in main /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/ninja_test.cc:147:5
+    #8 0x7f58b2d3860f in __libc_start_main (/usr/lib/libc.so.6+0x2060f)
+    #9 0x407868 in _start (/home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/ninja_test+0x407868)
+
+SUMMARY: ConstSanitizer: modification-of-const-value /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/vector.tcc:398:28 in std::vector<std::string, std::allocator<std::string> >::_M_insert_aux(__gnu_cxx::__normal_iterator<std::string*, std::vector<std::string, std::allocator<std::string> > >, std::string const&)
+==27151==WARNING: ConstSanitizer: modification-of-const-value
+    #0 0x47923e in std::vector<std::string, std::allocator<std::string> >::_M_insert_aux(__gnu_cxx::__normal_iterator<std::string*, std::vector<std::string, std::allocator<std::string> > >, std::string const&) /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/vector.tcc:399:36
+    #1 0x462402 in std::vector<std::string, std::allocator<std::string> >::push_back(std::string const&) /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/stl_vector.h:925:4
+    #2 0x4a3dcc in (anonymous namespace)::StatTest::Stat(std::string const&, std::string*) const /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/disk_interface_test.cc:226:3
+    #3 0x52f517 in Node::Stat(DiskInterface*, std::string*) /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/graph.cc:32:20
+    #4 0x535cb0 in Node::StatIfNecessary(DiskInterface*, std::string*) /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/graph.h:51:12
+    #5 0x52fba6 in DependencyScan::RecomputeDirty(Edge*, std::string*) /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/graph.cc:67:12
+    #6 0x4a6981 in (anonymous namespace)::StatTestMiddle::Run() /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/disk_interface_test.cc:299:3
+    #7 0x4d1bd9 in main /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/ninja_test.cc:147:5
+    #8 0x7f58b2d3860f in __libc_start_main (/usr/lib/libc.so.6+0x2060f)
+    #9 0x407868 in _start (/home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/ninja_test+0x407868)
+
+SUMMARY: ConstSanitizer: modification-of-const-value /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/vector.tcc:399:36 in std::vector<std::string, std::allocator<std::string> >::_M_insert_aux(__gnu_cxx::__normal_iterator<std::string*, std::vector<std::string, std::allocator<std::string> > >, std::string const&)
+==27151==WARNING: ConstSanitizer: modification-of-const-value
+    #0 0x479165 in std::vector<std::string, std::allocator<std::string> >::_M_insert_aux(__gnu_cxx::__normal_iterator<std::string*, std::vector<std::string, std::allocator<std::string> > >, std::string const&) /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/vector.tcc:397:27
+    #1 0x462402 in std::vector<std::string, std::allocator<std::string> >::push_back(std::string const&) /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/stl_vector.h:925:4
+    #2 0x4a3dcc in (anonymous namespace)::StatTest::Stat(std::string const&, std::string*) const /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/disk_interface_test.cc:226:3
+    #3 0x52f517 in Node::Stat(DiskInterface*, std::string*) /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/graph.cc:32:20
+    #4 0x535cb0 in Node::StatIfNecessary(DiskInterface*, std::string*) /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/graph.h:51:12
+    #5 0x52fba6 in DependencyScan::RecomputeDirty(Edge*, std::string*) /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/graph.cc:67:12
+    #6 0x52fc76 in DependencyScan::RecomputeDirty(Edge*, std::string*) /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/graph.cc:70:14
+    #7 0x4a6981 in (anonymous namespace)::StatTestMiddle::Run() /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/disk_interface_test.cc:299:3
+    #8 0x4d1bd9 in main /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/ninja_test.cc:147:5
+    #9 0x7f58b2d3860f in __libc_start_main (/usr/lib/libc.so.6+0x2060f)
+    #10 0x407868 in _start (/home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/ninja_test+0x407868)
+
+SUMMARY: ConstSanitizer: modification-of-const-value /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/vector.tcc:397:27 in std::vector<std::string, std::allocator<std::string> >::_M_insert_aux(__gnu_cxx::__normal_iterator<std::string*, std::vector<std::string, std::allocator<std::string> > >, std::string const&)
+==27151==WARNING: ConstSanitizer: modification-of-const-value
+    #0 0x4791cc in std::vector<std::string, std::allocator<std::string> >::_M_insert_aux(__gnu_cxx::__normal_iterator<std::string*, std::vector<std::string, std::allocator<std::string> > >, std::string const&) /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/vector.tcc:398:28
+    #1 0x462402 in std::vector<std::string, std::allocator<std::string> >::push_back(std::string const&) /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/stl_vector.h:925:4
+    #2 0x4a3dcc in (anonymous namespace)::StatTest::Stat(std::string const&, std::string*) const /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/disk_interface_test.cc:226:3
+    #3 0x52f517 in Node::Stat(DiskInterface*, std::string*) /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/graph.cc:32:20
+    #4 0x535cb0 in Node::StatIfNecessary(DiskInterface*, std::string*) /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/graph.h:51:12
+    #5 0x52fba6 in DependencyScan::RecomputeDirty(Edge*, std::string*) /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/graph.cc:67:12
+    #6 0x52fc76 in DependencyScan::RecomputeDirty(Edge*, std::string*) /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/graph.cc:70:14
+    #7 0x4a6981 in (anonymous namespace)::StatTestMiddle::Run() /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/disk_interface_test.cc:299:3
+    #8 0x4d1bd9 in main /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/ninja_test.cc:147:5
+    #9 0x7f58b2d3860f in __libc_start_main (/usr/lib/libc.so.6+0x2060f)
+    #10 0x407868 in _start (/home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/ninja_test+0x407868)
+
+SUMMARY: ConstSanitizer: modification-of-const-value /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/vector.tcc:398:28 in std::vector<std::string, std::allocator<std::string> >::_M_insert_aux(__gnu_cxx::__normal_iterator<std::string*, std::vector<std::string, std::allocator<std::string> > >, std::string const&)
+==27151==WARNING: ConstSanitizer: modification-of-const-value
+    #0 0x47923e in std::vector<std::string, std::allocator<std::string> >::_M_insert_aux(__gnu_cxx::__normal_iterator<std::string*, std::vector<std::string, std::allocator<std::string> > >, std::string const&) /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/vector.tcc:399:36
+    #1 0x462402 in std::vector<std::string, std::allocator<std::string> >::push_back(std::string const&) /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/stl_vector.h:925:4
+    #2 0x4a3dcc in (anonymous namespace)::StatTest::Stat(std::string const&, std::string*) const /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/disk_interface_test.cc:226:3
+    #3 0x52f517 in Node::Stat(DiskInterface*, std::string*) /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/graph.cc:32:20
+    #4 0x535cb0 in Node::StatIfNecessary(DiskInterface*, std::string*) /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/graph.h:51:12
+    #5 0x52fba6 in DependencyScan::RecomputeDirty(Edge*, std::string*) /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/graph.cc:67:12
+    #6 0x52fc76 in DependencyScan::RecomputeDirty(Edge*, std::string*) /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/graph.cc:70:14
+    #7 0x4a6981 in (anonymous namespace)::StatTestMiddle::Run() /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/disk_interface_test.cc:299:3
+    #8 0x4d1bd9 in main /home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/src/ninja_test.cc:147:5
+    #9 0x7f58b2d3860f in __libc_start_main (/usr/lib/libc.so.6+0x2060f)
+    #10 0x407868 in _start (/home/jon/software/dynamic-immutability-check/experiments/ninja/src/ninja-1.6.0/ninja_test+0x407868)
+
+SUMMARY: ConstSanitizer: modification-of-const-value /usr/lib64/gcc/x86_64-unknown-linux-gnu/5.2.0/../../../../include/c++/5.2.0/bits/vector.tcc:399:36 in std::vector<std::string, std::allocator<std::string> >::_M_insert_aux(__gnu_cxx::__normal_iterator<std::string*, std::vector<std::string, std::allocator<std::string> > >, std::string const&)
+ConstSanitizer: 39 warnings reported.
