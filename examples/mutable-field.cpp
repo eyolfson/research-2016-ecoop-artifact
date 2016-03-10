@@ -1,3 +1,4 @@
+// illustrates mutable fields as described in Section 3
 class Mutable {
   mutable int x;
 public:

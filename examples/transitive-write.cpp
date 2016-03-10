@@ -1,3 +1,4 @@
+// illustrates transitive writes as described in Section 3
 class TW {
   int *x;
 public:

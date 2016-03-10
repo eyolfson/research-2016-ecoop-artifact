@@ -17,19 +17,23 @@ struct hash<A> {
 }
 
 void writeId(A *pa) {
+  #line 15 "listing-1-paper.cpp"
   pa->id = 5;
 }
 
 void evil(const A& a) {
+  #line 11 "listing-1-paper.cpp"
   writeId(const_cast<A*>(&a));
 }
 
 int main()
 {
   std::unordered_map<A, std::string> m;
+  #line 4 "listing-1-paper.cpp"
   const A a;
 
   m.insert(std::make_pair(a, "Value"));
+  #line 7 "listing-1-paper.cpp"
   evil(a);
 
   if (m.find(a) != m.end()) {
