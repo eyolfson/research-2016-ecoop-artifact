@@ -101,8 +101,9 @@ To extract the sources, do the following:
     cd ~/abs
     makepkg -o
 
-The first part of the implementation is getting Clang to ignore definition
-expressions of declaration statements. The code implementing this is in:
+The first part of the implementation is getting Clang to annotate definition
+expressions of declaration statements so that ConstSanitizer can ignore them.
+The code implementing this is in:
 `~/abs/src/llvm-csan-0.0.1/tools/clang/lib/CodeGen/CGDebugInfo.cpp` and
 `~/abs/src/llvm-csan-0.0.1/tools/clang/lib/CodeGen/CGDebugInfo.h`. The part
 of the code generation we instrument is in
