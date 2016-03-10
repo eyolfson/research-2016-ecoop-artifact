@@ -139,7 +139,7 @@ So you may do the following:
 
     cd ~/experiments
     python build.py protobuf
-    python grooup.py protobuf-build
+    python group.py protobuf-build
 
 These results should be comparable to `~/results/protobuf.txt` after
 organization.
