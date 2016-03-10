@@ -1,5 +1,13 @@
 # ECOOP 2016 Artifact
 
+Our tool adds a new sanitizer to `clang`, a const sanitizer. This sanitizer
+verifies that instances of `const` are treated as transitively immutable. Our
+tool will display a warning for any write through a `const` type qualifier,
+even if a field is explictly `const`. The goal of our tool is to investigate
+how developers use `const` in programs.
+
+## Virtual Machine
+
 There is an example virtual machine located at
 `http://laforge.cs.uwaterloo.ca/ecoop-2016.qcow2` already setup. The username
 and password to this VM are both `ecoop-2016`. To run the VM, for example with
@@ -155,7 +163,8 @@ These results should be comparable to `~/results/protobuf.txt` after
 organization. Note that running the tests produces many
 `protobuf-build.log.XXXXX` files. The results of the paper corresponds to
 combining the results from all these files. The group script does combine all
-`protobuf-build.log.XXXXX` files. 
+`protobuf-build.log.XXXXX` files. However the group script has different
+sections for each file, it is not a single report acorss all logs.
 
 ### LevelDB
 
