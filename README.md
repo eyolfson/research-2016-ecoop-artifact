@@ -23,10 +23,9 @@ Then from your host machine do:
 
 ## Building (Optional)
 
-If you are using the VM image that we've distributed, the `clang`
-executable on that VM points to a prebuilt version of our
-tool. However, we've included the sources and you can build your own
-`clang` from scratch as follows.
+If you are using the VM image that we've distributed, the `clang` executable on
+that VM points to a prebuilt version of our tool. However, we've included the
+sources and you can build your own `clang` from scratch as follows.
 
 Ensure you have the `base-devel` group installed and the `multilib` repository
 enabled. Afterwards you can build the package in the standard Arch Linux
@@ -94,6 +93,26 @@ After running the program again, there should be no extra output on `stderr`
 and there should be a `listing-1.log.XXXXX` file in the current directory where
 `XXXXX` are random numbers. Feel free to try it out!
 
+## Implementation
+
+Note, that to browse the implementation you have to have the sources extracted.
+To extract the sources, do the following:
+
+    cd ~/abs
+    makepkg -o
+
+The heart of our implementation is located at:
+`~/abs/src/llvm-csan-0.0.1/lib/Transforms/Instrumentation/ConstSanitizer.cpp`.
+This file corresponds to the instrumentation of LLVM bit code that implements
+our runtime const tracking.
+
+The runtime library is located at:
+`~/abs/src/llvm-csan-0.0.1/projects/compiler-rt/lib/csan/csan.cc`. This file
+contains the implementation that reports the stack traces at runtime.
+
+The modification to get Clang to recongize our new sanitizer option is located
+at: `~/abs/src/llvm-csan-0.0.1/tools/clang/lib/CodeGen/BackendUtil.cpp`.
+
 ## Experiments
 
 All experiments are located in the `experiments` directory. To instrument a
@@ -113,23 +132,25 @@ the specified project name.
 
 The next subsections give examples of how we obtained the results in the paper.
 
-### Ninja
+### Protobuf
 
-In this case, as part of the build process, the tests are run. Therefore the
-`ninja-build.log.XXXXX` shows what violations occur as part of the test suite.
-If you open this file and observe it, the first non-standard library portion of
-the stack trace should be in `src/disk_interface_test.cc:226:3` matching the
-results of the paper. There should be 4 unique source locations, starting in
-the standard library, for all violations. To determine them, which is done for
-all other experiments, do the following:
+Similar to the Ninja example above, tests are run as part of the build process.
+So you may do the following:
 
     cd ~/experiments
-    python group.py ninja-build
+    python build.py protobuf
+    python grooup.py protobuf-build
 
-This will group the raw results into unique locations and also give the
-dynamic violation count.
+These results should be comparable to `~/results/protobuf.txt` after
+organization.
+
+### LevelDB
+
+Similar to above, tests are run as part of the build process.
 
 ### Fish
+
+We obtained the Fish results by running the shell, following these steps:
 
     cd ~/experiments
     python build.py fish
@@ -148,6 +169,10 @@ These results should correspond to the paper.
     CSAN_OPTIONS=log_path=mosh.log mosh/pkg/mosh/usr/bin/mosh-server
     pkill mosh-server
 
+To obtain more results you can also run `mosh-client`:
+
+    CSAN_OPTIONS=log_path=mosh.log mosh/pkg/mosh/usr/bin/mosh-client
+
 Again, similar to the last case, use the group script:
 
     python group.py mosh
@@ -156,12 +181,35 @@ These results should correspond to the paper.
 
 ### LLVM
 
-Similar to before, LLVM compiles `llvm-tblgen` and executes it as part of its
+Similar to Ninja, LLVM compiles `llvm-tblgen` and executes it as part of its
 build process. Therefore after running the build script the results should be
 accessible with:
 
     cd ~/experiments
     python group.py llvm-build
+
+### Tesseract
+
+Similar to Fish, we run the executable. You may need to also include
+`LD_LIBRARY_PATH` like so:
+
+    CSAN_OPTIONS=log_path=tesseract.log LD_LIBRARY_PATH=pkg/tesseract/usr/lib pkg/tesseract/usr/bin/tesseract
+
+### Ninja
+
+In this case, as part of the build process, the tests are run. Therefore the
+`ninja-build.log.XXXXX` shows what violations occur as part of the test suite.
+If you open this file and observe it, the first non-standard library portion of
+the stack trace should be in `src/disk_interface_test.cc:226:3` matching the
+results of the paper. There should be 4 unique source locations, starting in
+the standard library, for all violations. To find these unique source
+locations, like for all other experiments, use the group script:
+
+    cd ~/experiments
+    python group.py ninja-build
+
+This will group the raw results into unique locations and also give the
+dynamic violation count.
 
 ### Wayland / Weston
 
@@ -178,20 +226,6 @@ Then you can build weston:
 Again, run the produced executable:
 
     CSAN_OPTIONS=log_path=weston.log weston/pkg/weston/usr/bin/weston
-
-### Tesseract
-
-Similar to Fish, you may need to also include `LD_LIBRARY_PATH` like so:
-
-    CSAN_OPTIONS=log_path=tesseract.log LD_LIBRARY_PATH=pkg/tesseract/usr/lib pkg/tesseract/usr/bin/tesseract
-
-### LevelDB
-
-Similar to LLVM, tests are run as part of the build process.
-
-### Protobuf
-
-Similar to LLVM, tests are run as part of the build process.
 
 ## Timing
 
