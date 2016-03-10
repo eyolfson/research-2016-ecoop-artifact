@@ -66,7 +66,7 @@ due to the LLVM testing framework), you can also manually run the tests. You do 
 To manually run them yourself do the following:
 
     cd ~
-    clang -fsanitize=const -g ~/abs/src/llvm-csan-0.0.1/projects/compiler-rt/test/csan/const-object.cc -o const-object
+    clang++ -fsanitize=const -g ~/abs/src/llvm-csan-0.0.1/projects/compiler-rt/test/csan/const-object.cc -o const-object
     ./const-object
 
 You may explore all the other tests by exploring
