@@ -161,10 +161,10 @@ So you may do the following:
 
 These results should be comparable to `~/results/protobuf.txt` after
 organization. Note that running the tests produces many
-`protobuf-build.log.XXXXX` files. The results of the paper corresponds to
-combining the results from all these files. The group script does combine all
-`protobuf-build.log.XXXXX` files. However the group script has different
-sections for each file, it is not a single report acorss all logs.
+`protobuf-build.log.XXXXX` files. While the `group.py` script does
+combine all build log files, the resulting file still contains a
+separate section for each build log file. We manually combined these
+sections and report combined results from all build logs.
 
 ### LevelDB
 
