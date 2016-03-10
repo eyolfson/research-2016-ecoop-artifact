@@ -97,34 +97,36 @@ and there should be a `listing-1.log.XXXXX` file in the current directory where
 ## Experiments
 
 All experiments are located in the `experiments` directory. To instrument a
-package, for example Ninja, do the following:
+project, for example Ninja, do the following:
 
     cd ~/experiments
     python build.py ninja
 
-Any violations that occur during build time are located in the `experiments`
-directory in a file named `PACKAGE-build.log`. To create the groupings for
-manual inspection run `python group.py ninja`. The `group.py` script collects
-all results from log files with the specified project name. Some projects run
-tests as part of their build process (like Ninja) and the results are already
-available to go over.
+The build script stores any build-time violations (for instance, that occur
+while running a project's tests as part of the build) in the `experiments`
+directory, in a file named `PACKAGE-build.log`. Ninja is an example of a project
+that runs tests as part of its build.
 
-The next subsections give examples of how we obtained our results in the paper.
+To create groupings for manual inspection, run `python group.py
+ninja`. The `group.py` script collects all results from log files with
+the specified project name.
+
+The next subsections give examples of how we obtained the results in the paper.
 
 ### Ninja
 
 In this case, as part of the build process, the tests are run. Therefore the
-`ninja-build.log.XXXXX` show what violations occur as part of the test suite.
+`ninja-build.log.XXXXX` shows what violations occur as part of the test suite.
 If you open this file and observe it, the first non-standard library portion of
 the stack trace should be in `src/disk_interface_test.cc:226:3` matching the
 results of the paper. There should be 4 unique source locations, starting in
-the standard libary, for all violations. To determine them, which is done for
-all other experiements, do the following:
+the standard library, for all violations. To determine them, which is done for
+all other experiments, do the following:
 
     cd ~/experiments
     python group.py ninja-build
 
-This should group the raw results into unique locations and also give the
+This will group the raw results into unique locations and also give the
 dynamic violation count.
 
 ### Fish
