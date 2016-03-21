@@ -5,7 +5,7 @@
 # Contributor: Geoffroy Carrier <geoffroy@archlinux.org>
 # Contributor: Daniel J Griffiths <ghost1227@archlinux.us>
 
-pkgname=('protobuf' 'python2-protobuf')
+pkgname=('protobuf')
 pkgver=2.6.1
 pkgrel=1
 pkgdesc="Protocol Buffers - Google's data interchange format"
@@ -34,18 +34,4 @@ package_protobuf() {
 
   install -Dm644 editors/protobuf-mode.el \
     "$pkgdir"/usr/share/emacs/site-lisp/protobuf-mode.el
-}
-
-package_python2-protobuf() {
-  pkgdesc='Python 2 bindings for Google Protocol Buffers'
-  depends=("python2" "protobuf=${pkgver}")
-  provides=("protobuf-python")
-  conflicts=("protobuf-python")
-  replaces=("protobuf-python")
-
-  cd $pkgbase-$pkgver/python
-  python2 setup.py install --prefix=/usr --root="$pkgdir"
-
-  install -d "$pkgdir"/usr/share/licenses/$pkgname
-  ln -s /usr/share/licenses/$pkgbase/LICENSE "$pkgdir"/usr/share/licenses/$pkgname/
 }

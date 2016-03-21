@@ -29,6 +29,9 @@ Then from your host machine do:
 
     ssh ecoop-2016@localhost -p10022
 
+Note that the VM needs to be connected to the internet in order for some
+packages to build.
+
 ## Building (Optional)
 
 If you are using the VM image that we've distributed, the `clang++` executable on
@@ -62,7 +65,17 @@ should not occur when our tool is used. To run all the tests do the following:
     cd ~/abs/src/llvm-csan-0.0.1/build
     make check-csan
 
-Note that you must have built the tool in order to run `make check-csan`!
+Note 1: you must have built the tool in order to run `make check-csan`!
+
+Note 2: for the timing results in the paper, ran a debug version of the tool.
+To build a debug version, follow these steps:
+
+    cd ~/abs
+    makepkg -s -p PKGBUILD-debug
+
+Then replace the current version of our packages with these debugging ones with:
+
+    pacman -U *.pkg.tar.xz
 
 ### Manually Running Tests
 
@@ -215,7 +228,7 @@ accessible with:
 Similar to Fish, we run the executable. You may need to also include
 `LD_LIBRARY_PATH` like so:
 
-    CSAN_OPTIONS=log_path=tesseract.log LD_LIBRARY_PATH=pkg/tesseract/usr/lib pkg/tesseract/usr/bin/tesseract
+    CSAN_OPTIONS=log_path=tesseract.log LD_LIBRARY_PATH=pkg/tesseract/usr/lib tesseract/pkg/tesseract/usr/bin/tesseract
 
 ### Ninja
 
