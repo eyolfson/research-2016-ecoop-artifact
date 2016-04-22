@@ -182,7 +182,10 @@ sections and report combined results from all build logs.
 Note that before manual post-processing we found 216 unique warnings with 169736
 occurences. There was one archetype, relating to message targets, we could not
 determine and did not include in the paper. This archetype had 133 unique
-warnings with 14638 occurences and were manually identified.
+warnings with 14638 occurences and were manually identified. We also had a false
+positive due to incorrect debugging information (we believe). This archetype had
+7 unique locations with 27454 occurences. Manually removing these results should
+exactly match the results in the paper.
 
 ### LevelDB
 
