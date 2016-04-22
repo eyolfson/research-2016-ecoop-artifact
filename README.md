@@ -179,6 +179,11 @@ combine all build log files, the resulting file still contains a
 separate section for each build log file. We manually combined these
 sections and report combined results from all build logs.
 
+Note that before manual post-processing we found 216 unique warnings with 169736
+occurences. There was one archetype, relating to message targets, we could not
+determine and did not include in the paper. This archetype had 133 unique
+warnings with 14638 occurences and were manually identified.
+
 ### LevelDB
 
 Similar to above, tests are run as part of the build process.
@@ -201,18 +206,17 @@ These results should correspond to the paper.
 
     cd ~/experiments
     python build.py mosh
-    CSAN_OPTIONS=log_path=mosh.log mosh/pkg/mosh/usr/bin/mosh-server
-    pkill mosh-server
+    CSAN_OPTIONS=log_path=mosh.log mosh/pkg/mosh/usr/bin/mosh --client=/home/ecoop-2016/experiments/mosh/pkg/mosh/usr/bin/mosh-client --server=/home/ecoop-2016/experiments/mosh/pkg/mosh/usr/bin/mosh-server localhost
 
-To obtain more results you can also run `mosh-client`:
-
-    CSAN_OPTIONS=log_path=mosh.log mosh/pkg/mosh/usr/bin/mosh-client
+Answer yes to the certificate (if prompted) and login using the same information
+used for the virtual machine (username `ecoop-2016`, password `ecoop-2016`).
 
 Again, similar to the last case, use the group script:
 
     python group.py mosh
 
-These results should correspond to the paper.
+These results should correspond to the paper (there may be more unique locations
+than in the paper).
 
 ### LLVM
 
@@ -228,7 +232,14 @@ accessible with:
 Similar to Fish, we run the executable. You may need to also include
 `LD_LIBRARY_PATH` like so:
 
-    CSAN_OPTIONS=log_path=tesseract.log LD_LIBRARY_PATH=pkg/tesseract/usr/lib tesseract/pkg/tesseract/usr/bin/tesseract
+    cd ~/experiments
+    python build.py tesseract
+    CSAN_OPTIONS=log_path=tesseract.log LD_LIBRARY_PATH=tesseract/pkg/tesseract/usr/lib tesseract/pkg/tesseract/usr/bin/tesseract stdin stdout
+
+You should get an error along the lines of "error opening data file", and
+tesseract immediately exits. However, there will be some results, as before run:
+
+    python group.py tesseract
 
 ### Ninja
 
