@@ -6,12 +6,24 @@ tool will display a warning for any write through a `const` type qualifier,
 even if a field is explictly `const`. The goal of our tool is to investigate
 how developers use `const` in programs.
 
+## Content
+
+- [Virtual Machine](http://laforge.cs.uwaterloo.ca/ecoop-2016.tar.gz)
+- [Virtual Machine (VDI)](http://laforge.cs.uwaterloo.ca/ecoop-2016.tar.gz)
+- [Modified LLVM Sources](http://laforge.cs.uwaterloo.ca/llvm-csan-0.0.1.tar.gz)
+- [Modified Clang Sources](http://laforge.cs.uwaterloo.ca/clang-csan-0.0.1.tar.gz)
+- [Modified compiler-rt Sources](http://laforge.cs.uwaterloo.ca/compiler-rt-csan-0.0.1.tar.gz)
+
 ## Virtual Machine
 
-There is an example virtual machine located at
-`http://laforge.cs.uwaterloo.ca/ecoop-2016.qcow2` already setup. The username
-and password to this VM are both `ecoop-2016`. To run the VM, for example with
-QEMU, do the following:
+Note that these instructions assume the non-VDI image, running on QEMU. For
+Windows users, download the VDI image and use VirtualBox. After the Virtual
+Machine is running, the instructions are identical.
+
+There is an example
+[virtual machine](http://laforge.cs.uwaterloo.ca/ecoop-2016.tar.gz) already
+setup. The username and password to this VM are both `ecoop-2016`. To run the
+VM, with QEMU, do the following:
 
     qemu-system-x86_64 -enable-kvm -m 2048 -drive file=ecoop-2016.qcow2,format=qcow2
 
