@@ -1,0 +1,153 @@
+% This is a template for producing artifact descriptions associated with ECOOP papers
+% Adapted from the standard LIPIcs template by Camil Demetrescu
+% See lipics-manual.pdf for further information.
+% April 22, 2015
+
+\documentclass[a4paper,UKenglish]{lipics-v2016}
+% for A4 paper format use option "a4paper", for US-letter use option "letterpaper"
+% for british hyphenation rules use option "UKenglish", for american hyphenation rules use option "USenglish"
+% for section-numbered lemmas etc., use "numberwithinsect"
+ 
+\usepackage{microtype}%if unwanted, comment out or use option "draft"
+
+%\graphicspath{{./graphics/}}%helpful if your graphic files are in another directory
+
+\bibliographystyle{plainurl}% the recommended bibstyle
+
+% ARTIFACT: Include the following input command here
+\input{artifactcmds}
+
+\newcommand{\const}{{\bfseries \ttfamily const}}
+
+% Author macros::begin %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ARTIFACT: Please use the same title as the corresponding ECOOP paper and append the text "(Artifact)"
+% ARTIFACT: Add as a footnote the reference to the corresponding ECOOP paper
+\title{C++ \const{} and Immutability: An Empirical Study of
+       Writes-Through-\const{} (Artifact)
+  \footnote{This artifact is a companion of the paper: Jon Eyolfson and Patrick
+            Lam, ``C++ \const{} and Immutability: An Empirical Study of
+            Writes-Through-\const{}'', Proceedings of the 30th European
+            Conference on Object-Oriented Programming (ECOOP 2016), Rome, Italy,
+            July 2016.}}
+%\titlerunning{Your ECOOP paper title (Artifact)} %optional, in case that the title is too long; the running title should fit into the top page column
+
+% ARTIFACT: Authors may not be exactly the same as the ECOOP paper, e.g., you may want to include authors who contributed to the preparation of the artifact, but not to the ECOOP companion paper
+%% Please provide for each author the \author and \affil macro, even when authors have the same affiliation, i.e. for each author there needs to be the  \author and \affil macros
+\author[1]{Jon Eyolfson}
+\author[2]{Patrick Lam}
+\affil[1]{University of Waterloo\\
+  Waterloo, ON, Canada\\
+  \texttt{jeyolfso@uwaterloo.ca}}
+\affil[2]{University of Waterloo\\
+  Waterloo ON, Canada\\
+  \texttt{patrick.lam@uwaterloo.ca}}
+\authorrunning{J. Eyolfson and P. Lam}
+
+\Copyright{Jonathan Eyolfson and Patrick Lam}
+\subjclass{D.3.3 Language Constructs and Features}
+\keywords{empirical study, dynamic analysis, immutability}
+% Author macros::end %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%Editor-only macros:: begin (do not touch as author)%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\EventEditors{John Q. Open and Joan R. Acces}
+\EventNoEds{2}
+\EventLongTitle{42nd Conference on Very Important Topics (CVIT 2016)}
+\EventShortTitle{CVIT 2016}
+\EventAcronym{CVIT}
+\EventYear{2016}
+\EventDate{December 24--27, 2016}
+\EventLocation{Little Whinging, United Kingdom}
+\EventLogo{}
+\SeriesVolume{42}
+\ArticleNo{23}
+% Editor-only macros::end %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+  This artifact is based on {\tt ArtiFact}, a dynamic program analysis tool that
+  can profile paths spanning multiple loop iterations in the control flow
+  graph of a Java program. Profiled paths are obtained as the concatenation of
+  up to $k$ acyclic paths, where $k$ is a user-defined parameter. The profiler was
+  implemented as a patch to the Jikes Research Virtual Machine. The provided
+  package is designed to support repeatability of the experiments of the
+  companion paper: in particular, it allows users to test the profiler on a variety of
+  benchmarks and includes detailed instructions and scripts for running them
+  and for visualizing and interpreting collected profiles. Instructions for
+  rebuilding the profiler from scratch in the Jikes RMV are also provided.
+ \end{abstract}
+
+% ARTIFACT: section on the scope of the artifact (what claims of the paper are
+%           intended to be backed by this artifact?)
+\begin{scope}
+  This artifact includes the full source code for our tool and supports the
+  repeatability of our experiments in the companion paper. We encourage users
+  to reproduce our results and use the tool in other software projects.
+\end{scope}
+
+% ARTIFACT: section on the contents of the artifact (code, data, etc.)
+\begin{content}
+  The artifact package includes:
+  \begin{itemize}
+    \item a Virtual Machine image with everything included
+    \item detailed instructions for using the artifact and for rebuilding it
+          from scratch, provided as an {\tt index.html} file.
+  \end{itemize}
+
+  To simplify repeatabiliy of our experiments, we provide a QEMU and VirtualBox
+  disk image containing a minimal GNU/Linux distribution with all required
+  sources for the tool and experiments. The image is based on Arch Linux,
+  up-to-date on 2016-04-22. For reference, the Linux kernel version is 4.4.3.
+  This image includes a pre-compiled version of our tool available through the
+  default \texttt{clang} and \texttt{clang++} commands. The instructions detail
+  how to build our tool from scratch, if desired, however it is time consuming.
+  All of the experiments, including their sources and dependencies, are
+  pre-installed so an internet connection is not required.
+\end{content} 
+
+% ARTIFACT: section containing links to sites holding the latest version of the
+%           code/data, if any
+\begin{getting}
+  The latest version of the artifact is available on GitHub:
+  {\url https://github.com/eyolfson/research-2016-ecoop-artifact}. The
+  \texttt{README} provides the current links to the artifact packages.
+\end{getting} 
+
+% ARTIFACT: section specifying the platforms on which the artifact is known to
+%           work, including requirements beyond the operating system such as
+%           large amounts of memory or many processor cores
+\begin{platforms}
+  The artifact is known to work on any platform running QEMU or VirtualBox.
+  We highly recommend CPUs with hardware virtualization and at least 2~GiB of
+  memory for the Virtual Machine.
+\end{platforms}
+
+% ARTIFACT: section specifying the license under which the artifact is
+% made available
+\license{
+  \begin{description}
+    \item[LLVM Modifications.]
+      University of Illinois/NCSA Open Source License\\
+      ({\url https://opensource.org/licenses/UoI-NCSA.php})
+    \item[Scripts.]
+      GPL-3.0 ({\url http://www.gnu.org/licenses/gpl-3.0.en.html})
+  \end{description}
+}
+
+% ARTIFACT: section specifying the md5 sum of the artifact master file uploaded
+%           to the Dagstuhl Research Online Publication Server, enabling
+%           downloaders to check that the file is the expected version and
+%           suffered no damage during download.
+\mdsum{
+  \texttt{0d30b05ad520209348fd38a3662e45f5} (QEMU)
+
+  \noindent \texttt{6d5a88c36de2cec6fa50bd74d601cea9} (VDI)
+}
+
+% ARTIFACT: section specifying the size of the artifact master file uploaded to
+%           the Dagstuhl Research Online Publication Server
+\artifactsize{1.5 GB}
+
+\end{document}

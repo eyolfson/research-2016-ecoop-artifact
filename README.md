@@ -8,11 +8,11 @@ how developers use `const` in programs.
 
 ## Content
 
-- [Virtual Machine](http://laforge.cs.uwaterloo.ca/ecoop-2016.tar.gz)
-- [Virtual Machine (VDI)](http://laforge.cs.uwaterloo.ca/ecoop-2016.tar.gz)
-- [Modified LLVM Sources](http://laforge.cs.uwaterloo.ca/llvm-csan-0.0.1.tar.gz)
-- [Modified Clang Sources](http://laforge.cs.uwaterloo.ca/clang-csan-0.0.1.tar.gz)
-- [Modified compiler-rt Sources](http://laforge.cs.uwaterloo.ca/compiler-rt-csan-0.0.1.tar.gz)
+- [Virtual Machine Package](http://laforge.cs.uwaterloo.ca/ecoop-2016.tar.gz)
+- [Virtual Machine Package (VDI)](http://laforge.cs.uwaterloo.ca/ecoop-2016.tar.gz)
+- [Included Modified LLVM Sources](http://laforge.cs.uwaterloo.ca/llvm-csan-0.0.1.tar.gz)
+- [Included Modified Clang Sources](http://laforge.cs.uwaterloo.ca/clang-csan-0.0.1.tar.gz)
+- [Included Modified compiler-rt Sources](http://laforge.cs.uwaterloo.ca/compiler-rt-csan-0.0.1.tar.gz)
 
 ## Virtual Machine
 
