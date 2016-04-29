@@ -67,24 +67,22 @@
 \maketitle
 
 \begin{abstract}
-  This artifact is based on {\tt ArtiFact}, a dynamic program analysis tool that
-  can profile paths spanning multiple loop iterations in the control flow
-  graph of a Java program. Profiled paths are obtained as the concatenation of
-  up to $k$ acyclic paths, where $k$ is a user-defined parameter. The profiler was
-  implemented as a patch to the Jikes Research Virtual Machine. The provided
-  package is designed to support repeatability of the experiments of the
-  companion paper: in particular, it allows users to test the profiler on a variety of
-  benchmarks and includes detailed instructions and scripts for running them
-  and for visualizing and interpreting collected profiles. Instructions for
-  rebuilding the profiler from scratch in the Jikes RMV are also provided.
- \end{abstract}
+  This artifact is based on {\tt ConstSanitizer}, a dynamic program analysis
+  tool that detects deep immutability violations through \const{} qualifiers.
+  Our instruments any code compiled by \texttt{clang} with the
+  \texttt{-fsanitizer=const} flag. Our implementation includes both
+  instrumentation of LLVM code and a runtime library to support our analysis.
+  The provided package includes our tool and all experiments used in our
+  companion paper. Instructions are also provided.
+\end{abstract}
 
 % ARTIFACT: section on the scope of the artifact (what claims of the paper are
 %           intended to be backed by this artifact?)
 \begin{scope}
-  This artifact includes the full source code for our tool and supports the
-  repeatability of our experiments in the companion paper. We encourage users
-  to reproduce our results and use the tool in other software projects.
+  This artifact includes the full source code for our tool,
+  \texttt{ConstSanitizer}, and supports the repeatability of our experiments in
+  the companion paper. We encourage users to reproduce our results and use the
+  tool in other software projects.
 \end{scope}
 
 % ARTIFACT: section on the contents of the artifact (code, data, etc.)
